@@ -709,7 +709,7 @@
                         <!-- Fiat to Coin Button -->
                         <button type="button" onclick="openModal('fiatToCryptoModal')"
                                 class="btn btn-primary w-full text-center">
-                            Fiat to Coin
+                            Fiat to Coinssss
                         </button>
 
                         <!-- Coin to Fiat Button -->
