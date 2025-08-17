@@ -5,55 +5,60 @@
 
 <style>
     :root {
-        --primary: #4361ee;
-        --primary-dark: #3a56d4;
+        --primary: #6c5ce7;
+        --primary-dark: #5649c0;
         --secondary: #3f37c9;
-        --success: #4cc9f0;
-        --danger: #f72585;
-        --warning: #f8961e;
-        --info: #4895ef;
-        --light: #f8f9fa;
-        --dark: #212529;
-        --gray: #6c757d;
-        --gray-light: #e9ecef;
+        --success: #00b894;
+        --danger: #d63031;
+        --warning: #fdcb6e;
+        --info: #0984e3;
+        --light: #2d3436;
+        --dark: #1e272e;
+        --gray: #636e72;
+        --gray-light: #2d3436;
         --white: #ffffff;
+        --card-bg: #1e272e;
+        --card-border: #2d3436;
+        --text-primary: #f5f6fa;
+        --text-secondary: #dfe6e9;
     }
 
     /* Base Styles */
     body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background-color: #f5f7fb;
-        color: #1a1a1a;
+        background-color: #12181b;
+        color: var(--text-primary);
         line-height: 1.6;
     }
 
     /* Card Styles */
     .dashboard-card {
-        background: var(--white);
+        background: var(--card-bg);
         border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--card-border);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .dashboard-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
     .card-header {
         padding: 1.25rem 1.5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--card-border);
     }
 
     .card-body {
         padding: 1.5rem;
+        color: var(--text-secondary);
     }
 
     /* Typography */
     .text-heading {
         font-weight: 600;
-        color: var(--dark);
+        color: var(--text-primary);
     }
 
     .text-subheading {
@@ -65,7 +70,7 @@
     /* Tab Styles */
     .tab-nav {
         display: flex;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--card-border);
     }
 
     .tab-nav-item {
@@ -131,9 +136,17 @@
         color: var(--white);
     }
 
+    .btn-success:hover {
+        background-color: #00a383;
+    }
+
     .btn-danger {
         background-color: var(--danger);
         color: var(--white);
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
     }
 
     .btn-outline {
@@ -150,15 +163,16 @@
     .form-control {
         width: 100%;
         padding: 0.625rem 0.875rem;
-        border: 1px solid var(--gray-light);
+        border: 1px solid var(--card-border);
         border-radius: 8px;
         transition: all 0.2s ease;
         background-color: var(--white);
+        color: #000000;
     }
 
     .form-control:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
         outline: none;
     }
 
@@ -166,7 +180,7 @@
         display: block;
         margin-bottom: 0.5rem;
         font-weight: 500;
-        color: var(--dark);
+        color: var(--text-primary);
         font-size: 0.875rem;
     }
 
@@ -174,10 +188,12 @@
     .data-table {
         width: 100%;
         border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
     }
 
     .data-table th {
-        background-color: #f8fafc;
+        background-color: var(--dark);
         color: var(--gray);
         font-weight: 600;
         text-align: left;
@@ -189,8 +205,9 @@
 
     .data-table td {
         padding: 1rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--card-border);
         vertical-align: middle;
+        color: var(--text-secondary);
     }
 
     .data-table tr:last-child td {
@@ -198,7 +215,7 @@
     }
 
     .data-table tr:hover {
-        background-color: #f8fafc;
+        background-color: var(--dark);
     }
 
     /* Badge Styles */
@@ -212,30 +229,30 @@
     }
 
     .badge-success {
-        background-color: #e6f7ee;
-        color: #059669;
+        background-color: rgba(0, 184, 148, 0.2);
+        color: var(--success);
     }
 
     .badge-danger {
-        background-color: #fee2e2;
-        color: #dc2626;
+        background-color: rgba(214, 48, 49, 0.2);
+        color: var(--danger);
     }
 
     .badge-warning {
-        background-color: #fef3c7;
-        color: #d97706;
+        background-color: rgba(253, 203, 110, 0.2);
+        color: var(--warning);
     }
 
     .badge-info {
-        background-color: #dbeafe;
-        color: #2563eb;
+        background-color: rgba(9, 132, 227, 0.2);
+        color: var(--info);
     }
 
     /* Progress Bars */
     .progress-container {
         height: 8px;
         border-radius: 4px;
-        background-color: var(--gray-light);
+        background-color: var(--dark);
         overflow: hidden;
     }
 
@@ -254,7 +271,7 @@
         align-items: center;
         justify-content: center;
         margin-right: 12px;
-        background-color: #f8fafc;
+        background-color: var(--dark);
         overflow: hidden;
     }
 
@@ -265,7 +282,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.8);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -281,13 +298,14 @@
     }
 
     .modal-content {
-        background-color: white;
+        background-color: var(--card-bg);
         border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         width: 100%;
         max-width: 500px;
         transform: translateY(20px);
         transition: all 0.3s ease;
+        border: 1px solid var(--card-border);
     }
 
     .modal-overlay.active .modal-content {
@@ -296,7 +314,7 @@
 
     .modal-header {
         padding: 1.25rem 1.5rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--card-border);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -314,7 +332,7 @@
     }
 
     .modal-close:hover {
-        color: var(--dark);
+        color: var(--text-primary);
     }
 
     /* Signal Bars */
@@ -366,31 +384,31 @@
 
     /* Utility Classes */
     .text-success {
-        color: #10b981;
+        color: var(--success);
     }
 
     .text-danger {
-        color: #ef4444;
+        color: var(--danger);
     }
 
     .text-warning {
-        color: #f59e0b;
+        color: var(--warning);
     }
 
     .bg-success-light {
-        background-color: #d1fae5;
+        background-color: rgba(0, 184, 148, 0.1);
     }
 
     .bg-danger-light {
-        background-color: #fee2e2;
+        background-color: rgba(214, 48, 49, 0.1);
     }
 
     .bg-warning-light {
-        background-color: #fef3c7;
+        background-color: rgba(253, 203, 110, 0.1);
     }
 
     .bg-info-light {
-        background-color: #dbeafe;
+        background-color: rgba(9, 132, 227, 0.1);
     }
 
     /* Trading View Widget */
@@ -400,406 +418,443 @@
         border-radius: 8px;
         overflow: hidden;
     }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--gray);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--gray-light);
+    }
+
+    /* Hover effects for crypto items */
+    .crypto-item:hover {
+        background-color: var(--dark);
+    }
+
+    /* KYC status boxes */
+    .kyc-status {
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Gradient text for headings */
+    .gradient-text {
+        background: linear-gradient(90deg, var(--primary), var(--info));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* Divider style */
+    .divider {
+        height: 1px;
+        background-color: var(--card-border);
+        margin: 1rem 0;
+    }
+
+    /* Input group style */
+    .input-group {
+        display: flex;
+        border: 1px solid var(--card-border);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .input-group input {
+        flex: 1;
+        border: none;
+        background: var(--dark);
+        color: var(--text-primary);
+        padding: 0.625rem 0.875rem;
+    }
+
+    .input-group .input-addon {
+        background: var(--dark);
+        color: var(--gray);
+        padding: 0.625rem 0.875rem;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Dropdown menu style */
+    .dropdown-menu {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Active tab button style */
+    .active-tab-btn {
+        background-color: var(--primary) !important;
+        color: white !important;
+    }
+
+    /* Inactive tab button style */
+    .inactive-tab-btn {
+        background-color: var(--dark) !important;
+        color: var(--gray) !important;
+    }
+
+    /* Notification badge */
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: var(--danger);
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+    }
+
+    /* Balance Display */
+    .balance-display {
+        background: linear-gradient(135deg, var(--primary), var(--info));
+        border-radius: 12px;
+        padding: 1rem;
+        color: var(--white);
+        margin-bottom: 1rem;
+    }
+
+    /* Chart Type Button Styles */
+    .chart-type-btn {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        border: 1px solid var(--card-border);
+        background-color: var(--dark);
+        color: var(--gray);
+        cursor: pointer;
+    }
+
+    .chart-type-btn.active {
+        background-color: var(--primary);
+        color: var(--white);
+        border-color: var(--primary);
+    }
+
+    .chart-type-btn:hover:not(.active) {
+        background-color: var(--gray-light);
+        color: var(--text-primary);
+    }
+
+    /* Chart Container Styles */
+    .chart-container {
+        display: none;
+        height: 100%;
+        width: 100%;
+    }
+
+    .chart-container.active {
+        display: block;
+    }
 </style>
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
     <!-- Dashboard Header -->
     <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
-        <p class="text-gray-600">Welcome back, {{ auth()->user()->username }}</p>
+        <h1 class="text-2xl font-bold gradient-text">Dashboard Overview</h1>
+        <p class="text-gray-500">Welcome back, {{ auth()->user()->username }}</p>
     </div>
 
-    <!-- Balance and Stats Cards -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <!-- Balance Card -->
-        <div class="dashboard-card">
-            <div class="card-header">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-subheading">Total Balance</h3>
-                        <p class="text-heading text-2xl">{{ showAmount(auth()->user()->balance) }}</p>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="p-2 rounded-lg tab-nav-item active" data-tab="tab1">
-                            <i class="ri-file-list-line"></i>
-                        </button>
-                        <button class="p-2 rounded-lg tab-nav-item" data-tab="tab2">
-                            <i class="ri-smartphone-line"></i>
-                        </button>
-                    </div>
-                </div>
+  <!-- Balance Card - Full Width -->
+<div class="dashboard-card mb-6">
+    <div class="card-header">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+            <div>
+                <h3 class="text-subheading">Total Balance</h3>
+                <p class="text-heading text-2xl md:text-3xl">{{ showAmount(auth()->user()->balance) }}</p>
             </div>
-
-            <div class="card-body">
-                <div id="tab1" class="tab-content active animate-fade">
-                    <h4 class="text-subheading mb-3">Recent Deposits</h4>
-                    <div class="space-y-3">
-                        @foreach($Topcurrencies as $currency)
-                            @php
-                                $symbollowcase = strtolower($currency->currency);
-                                $apiUrl = "https://min-api.cryptocompare.com/data/price?fsym={$currency->currency}&tsyms=USD";
-                                $response = file_get_contents($apiUrl);
-                                $data = json_decode($response, true);
-                                $rate = $data['USD'] ?? 0;
-                                $amount_usd = $currency->amount * $rate;
-                            @endphp
-
-                            <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition-colors">
-                                <div class="flex items-center">
-                                    <div class="crypto-icon">
-                                        <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/svg/color/{{ $symbollowcase }}.svg"
-                                             class="w-4 h-4"
-                                             onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/0/381.png'">
-                                    </div>
-                                    <div>
-                                        <div class="text-heading">{{ $currency->currency }}</div>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-heading">${{ number_format($amount_usd, 2) }}</div>
-                                    <div class="text-subheading">{{ $currency->amount }} {{ $currency->currency }}</div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div id="tab2" class="tab-content animate-fade">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                            <div class="flex items-center">
-                                <i class="ri-currency-line text-gray-400 mr-2"></i>
-                                <span class="text-subheading">Total Deposits</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <p class="text-heading">{{ showAmount(auth()->user()->balance) }}</p>
-                                <a href="{{ route('crypto.deposit.index') }}" class="btn btn-primary text-sm">Deposit</a>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                            <div class="flex items-center">
-                                <i class="ri-currency-line text-gray-400 mr-2"></i>
-                                <span class="text-subheading">Total Withdrawals</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <p class="text-heading">{{ showAmount($totalWithdraw) }}</p>
-                                <a href="{{ route('user.withdraw') }}" class="btn btn-primary text-sm">Withdraw</a>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-between items-center py-3 border-b border-gray-100">
-                            <div class="flex items-center">
-                                <i class="ri-currency-line text-gray-400 mr-2"></i>
-                                <span class="text-subheading">Total Profits</span>
-                            </div>
-                            <p class="text-heading">$0.00</p>
-                        </div>
-
-                        <div class="flex justify-between items-center py-3">
-                            <div class="flex items-center">
-                                <i class="ri-shield-check-line text-gray-400 mr-2"></i>
-                                <span class="text-subheading">Verification</span>
-                            </div>
-                            @if (auth()->user()->kv == Status::KYC_UNVERIFIED && auth()->user()->kyc_rejection_reason)
-                                <div class="p-3 bg-danger-light text-danger rounded-lg text-sm">
-                                    <div class="flex justify-between items-center">
-                                        <h4 class="font-bold">@lang('KYC Documents Rejected')</h4>
-                                    </div>
-                                    <hr class="my-2 border-gray-200">
-                                    <p class="mb-0">
-                                        {{ __(@$kyc->data_values->reject) }}
-                                        <a href="javascript::void(0)" class="text-primary underline" data-bs-toggle="modal" data-bs-target="#kycRejectionReason">@lang('Click here')</a>
-                                        @lang('to show the reason').
-                                        <a href="{{ route('user.kyc.form') }}" class="text-primary underline">@lang('Click Here')</a>
-                                        @lang('to Re-submit Documents').
-                                        <a class="text-primary underline" href="{{ route('user.kyc.data') }}">@lang('See KYC Data')</a>
-                                    </p>
-                                </div>
-                            @elseif(auth()->user()->kv == Status::KYC_UNVERIFIED)
-                                <div class="p-3 bg-warning-light text-warning rounded-lg text-sm">
-                                    <h4 class="font-bold">@lang('KYC Verification Required')</h4>
-                                    <hr class="my-2 border-gray-200">
-                                    <p class="mb-0">
-                                        {{ __(@$kyc->data_values->required) }}
-                                        <a class="text-primary underline" href="{{ route('user.kyc.form') }}">@lang('Click Here to Submit Documents')</a>
-                                    </p>
-                                </div>
-                            @elseif(auth()->user()->kv == Status::KYC_PENDING)
-                                <div class="p-3 bg-info-light text-info rounded-lg text-sm">
-                                    <h4 class="font-bold">@lang('KYC Verification Pending')</h4>
-                                    <hr class="my-2 border-gray-200">
-                                    <p class="mb-0">
-                                        {{ __(@$kyc->data_values->pending) }}
-                                        <a class="text-primary underline" href="{{ route('user.kyc.data') }}">@lang('See KYC Data')</a>
-                                    </p>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Stats Card -->
-        <div class="dashboard-card">
-            <div class="card-body space-y-6">
-                <!-- Categories Card -->
-                <div>
-                    <h3 class="text-subheading mb-3">Portfolio Allocation</h3>
-                    @php
-                        $totalTradeAmount = $userAssets->sum('amount');
-                        $cryptoTrades = $userAssets->where('trade_type', 'Crypto')->sum('amount');
-                        $stockTrades = $userAssets->where('trade_type', 'Stocks')->sum('amount');
-                        $forexTrades = $userAssets->where('trade_type', 'Forex')->sum('amount');
-
-                        $cryptoPercent = $totalTradeAmount > 0 ? ($cryptoTrades / $totalTradeAmount) * 100 : 0;
-                        $stockPercent = $totalTradeAmount > 0 ? ($stockTrades / $totalTradeAmount) * 100 : 0;
-                        $forexPercent = $totalTradeAmount > 0 ? ($forexTrades / $totalTradeAmount) * 100 : 0;
-                    @endphp
-
-                    @if($totalTradeAmount > 0)
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-subheading">Crypto</span>
-                                    <span class="text-heading">{{ number_format($cryptoPercent, 1) }}%</span>
-                                </div>
-                                <div class="progress-container">
-                                    <div class="progress-bar bg-primary" style="width: {{ $cryptoPercent }}%"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-subheading">Stocks</span>
-                                    <span class="text-heading">{{ number_format($stockPercent, 1) }}%</span>
-                                </div>
-                                <div class="progress-container">
-                                    <div class="progress-bar bg-success" style="width: {{ $stockPercent }}%"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-subheading">Forex</span>
-                                    <span class="text-heading">{{ number_format($forexPercent, 1) }}%</span>
-                                </div>
-                                <div class="progress-container">
-                                    <div class="progress-bar bg-info" style="width: {{ $forexPercent }}%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <p class="text-subheading">
-                            No categories yet.
-                            <a href="{{ route('crypto.deposit.index') }}" class="text-primary hover:underline">Deposit now</a>
-                            to see your portfolio breakdown.
-                        </p>
-                    @endif
-                </div>
-
-                <!-- Trading Progress Card -->
-                <div>
-                    <h3 class="text-subheading mb-3">Trading Performance</h3>
-                    @php
-                        $completedTrades = $userAssets->where('status', 'complete')->count();
-                        $totalTrades = $userAssets->count();
-                        $progressPercent = $totalTrades > 0 ? ($completedTrades / $totalTrades) * 100 : 0;
-                    @endphp
-                    <div class="progress-container">
-                        <div class="progress-bar bg-success" style="width: {{ $progressPercent }}%"></div>
-                    </div>
-                    <div class="flex justify-between mt-1">
-                        <span class="text-subheading text-xs">{{ $completedTrades }} completed</span>
-                        <span class="text-subheading text-xs">{{ $totalTrades }} total</span>
-                    </div>
-                </div>
-
-                <!-- Signal Strength Card -->
-                <div>
-                    <h3 class="text-subheading mb-3">Market Signal Strength</h3>
-                    @php
-                        $signalStrength = 10; // This should be dynamic in your actual implementation
-                        $barCount = 5;
-                        $activeBarCount = ceil(($signalStrength / 100) * $barCount);
-                    @endphp
-                    <div class="signal-bars" id="signal-bars">
-                        @for ($i = 1; $i <= $barCount; $i++)
-                            @if ($i <= $activeBarCount)
-                                <div class="signal-bar"
-                                    style="background-color: {{ $i <= 1 ? 'var(--danger)' : ($i <= 3 ? 'var(--warning)' : 'var(--success)') }};"></div>
-                            @else
-                                <div class="signal-bar bg-gray-200"></div>
-                            @endif
-                        @endfor
-                    </div>
-                    <div class="flex justify-between mt-1">
-                        <span class="text-subheading text-xs">Low</span>
-                        <span class="text-xs font-medium signal-strength-value {{ $signalStrength > 50 ? 'text-success' : 'text-danger' }}">
-                            {{ $signalStrength }}%
-                        </span>
-                        <span class="text-subheading text-xs">High</span>
-                    </div>
-                </div>
+            <div class="flex space-x-2">
+                <button class="p-2 rounded-lg tab-nav-item active" data-tab="tab1">
+                    <i class="ri-file-list-line"></i>
+                    <span class="ml-1 md:inline hidden">Recent Deposits</span>
+                </button>
+                <button class="p-2 rounded-lg tab-nav-item" data-tab="tab2">
+                    <i class="ri-smartphone-line"></i>
+                    <span class="ml-1 md:inline hidden">Account Summary</span>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Chart and Trading Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        <!-- Chart Section -->
-        <div class="lg:col-span-2">
-            <div class="dashboard-card h-full">
-                <div class="card-header">
-                    <h3 class="text-heading">Market Chart</h3>
+    <div class="card-body">
+        <div id="tab1" class="tab-content active animate-fade">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach($Topcurrencies as $currency)
+                    @php
+                        $symbollowcase = strtolower($currency->currency);
+                        $apiUrl = "https://min-api.cryptocompare.com/data/price?fsym={$currency->currency}&tsyms=USD";
+                        $response = file_get_contents($apiUrl);
+                        $data = json_decode($response, true);
+                        $rate = $data['USD'] ?? 0;
+                        $amount_usd = $currency->amount * $rate;
+                    @endphp
+
+                    <div class="flex items-center justify-between p-4 hover:bg-gray-800 rounded-lg transition-colors crypto-item border border-gray-700">
+                        <div class="flex items-center">
+                            <div class="crypto-icon">
+                                <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/svg/color/{{ $symbollowcase }}.svg"
+                                     class="w-6 h-6"
+                                     onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/0/381.png'">
+                            </div>
+                            <div class="ml-3">
+                                <div class="text-heading">{{ $currency->currency }}</div>
+                                <div class="text-subheading text-sm">{{ $currency->amount }} {{ $currency->currency }}</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-heading">${{ number_format($amount_usd, 2) }}</div>
+                            <div class="text-subheading text-sm">{{ $rate > 0 ? '$'.number_format($rate, 4) : 'N/A' }}</div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            @if(count($Topcurrencies) == 0)
+                <div class="empty-state py-8">
+                    <div class="empty-state-icon">
+                        <i class="ri-wallet-3-line"></i>
+                    </div>
+                    <p class="empty-state-text">No deposit history yet</p>
+                    <a href="{{ route('crypto.deposit.index') }}" class="btn btn-primary mt-4">
+                        <i class="ri-bank-card-line mr-1"></i> Make a Deposit
+                    </a>
                 </div>
-                <div class="card-body p-0 h-[400px]">
-                    <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container">
-                        <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                        <div class="tradingview-widget-copyright">
-                            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-                                <span class="blue-text">Track all markets on TradingView</span>
+            @endif
+        </div>
+
+        <div id="tab2" class="tab-content animate-fade">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Deposit Summary -->
+                <div class="p-4 rounded-lg border border-gray-700 bg-gray-800">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center">
+                            <i class="ri-arrow-down-circle-line text-primary mr-2"></i>
+                            <span class="text-subheading">Total Deposits</span>
+                        </div>
+                        <p class="text-heading">{{ showAmount(auth()->user()->balance) }}</p>
+                    </div>
+                    <a href="{{ route('crypto.deposit.index') }}" class="btn btn-primary btn-sm w-full mt-2">
+                        <i class="ri-add-line mr-1"></i> Deposit Funds
+                    </a>
+                </div>
+
+                <!-- Withdrawal Summary -->
+                <div class="p-4 rounded-lg border border-gray-700 bg-gray-800">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center">
+                            <i class="ri-arrow-up-circle-line text-danger mr-2"></i>
+                            <span class="text-subheading">Total Withdrawals</span>
+                        </div>
+                        <p class="text-heading">{{ showAmount($totalWithdraw) }}</p>
+                    </div>
+                    <a href="{{ route('user.withdraw') }}" class="btn btn-danger btn-sm w-full mt-2">
+                        <i class="ri-bank-line mr-1"></i> Withdraw Funds
+                    </a>
+                </div>
+
+                <!-- Profit Summary -->
+                <div class="p-4 rounded-lg border border-gray-700 bg-gray-800">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center">
+                            <i class="ri-line-chart-line text-success mr-2"></i>
+                            <span class="text-subheading">Total Profits</span>
+                        </div>
+                        <p class="text-heading text-success">$0.00</p>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1">From trading and investments</div>
+                </div>
+
+                <!-- Verification Status -->
+                <div class="p-4 rounded-lg border border-gray-700 bg-gray-800">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center">
+                            <i class="ri-shield-check-line text-info mr-2"></i>
+                            <span class="text-subheading">Verification Status</span>
+                        </div>
+                        @if(auth()->user()->kv == Status::KYC_VERIFIED)
+                            <span class="badge badge-success">Verified</span>
+                        @else
+                            <span class="badge badge-danger">Unverified</span>
+                        @endif
+                    </div>
+
+                    @if(auth()->user()->kv == Status::KYC_UNVERIFIED && auth()->user()->kyc_rejection_reason)
+                        <div class="kyc-status bg-danger-light text-danger text-xs p-2 rounded mt-2">
+                            <p>{{ __(@$kyc->data_values->reject) }}</p>
+                            <a href="javascript::void(0)" class="underline" data-bs-toggle="modal" data-bs-target="#kycRejectionReason">
+                                @lang('View reason')
                             </a>
                         </div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                            {
-                                "height": "400",
-                                "symbol": "BINANCE:BTCUSDT",
-                                "interval": "D",
-                                "timezone": "Etc/UTC",
-                                "theme": "light",
-                                "style": "1",
-                                "locale": "en",
-                                "hide_top_toolbar": true,
-                                "allow_symbol_change": true,
-                                "calendar": false,
-                                "support_host": "https://www.tradingview.com"
-                            }
-                        </script>
-                    </div>
-                    <!-- TradingView Widget END -->
+                    @elseif(auth()->user()->kv == Status::KYC_UNVERIFIED)
+                        <a href="{{ route('user.kyc.form') }}" class="btn btn-warning btn-sm w-full mt-2">
+                            <i class="ri-shield-keyhole-line mr-1"></i> Verify Account
+                        </a>
+                    @elseif(auth()->user()->kv == Status::KYC_PENDING)
+                        <div class="kyc-status bg-info-light text-info text-xs p-2 rounded mt-2">
+                            <p>{{ __(@$kyc->data_values->pending) }}</p>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- Trading Panel -->
-        <div class="dashboard-card">
-            <div class="card-header">
-                <h3 class="text-heading">New Trade</h3>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('user.trade.store') }}" method="post" id="tradeForm">
-                    @csrf
-                    <div class="grid grid-cols-2 gap-3 mb-4">
-                        <!-- Buy Button -->
-                        <label class="flex-1">
-                            <input type="radio" name="action" value="buy" class="hidden peer" checked>
-                            <span class="btn btn-primary w-full text-center peer-checked:bg-primary-dark">Buy</span>
-                        </label>
 
-                        <!-- Sell Button -->
-                        <label class="flex-1">
-                            <input type="radio" name="action" value="sell" class="hidden peer">
-                            <span class="btn btn-danger w-full text-center peer-checked:bg-red-700">Sell</span>
-                        </label>
+<!-- Trading Section - Side by Side Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+    <!-- New Trade Panel - Takes 1/3 on large screens -->
+    <div class="dashboard-card lg:col-span-1">
+        <div class="card-header">
+            <h3 class="text-heading">New Trade</h3>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('user.trade.store') }}" method="post" id="tradeForm">
+                @csrf
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <!-- Buy Button -->
+                    <button type="button" onclick="openModal('buyCryptoModal')"
+                            class="btn btn-success w-full text-center flex items-center justify-center">
+                        <i class="ri-arrow-down-line mr-1"></i> Buy
+                    </button>
 
-                        <!-- Fiat to Coin Button -->
-                        <button type="button" onclick="openModal('fiatToCryptoModal')"
-                                class="btn btn-primary w-full text-center">
-                            Fiat to Coinssss
-                        </button>
+                    <!-- Sell Button -->
+                    <button type="button" onclick="openModal('sellCryptoModal')"
+                            class="btn btn-danger w-full text-center flex items-center justify-center">
+                        <i class="ri-arrow-up-line mr-1"></i> Sell
+                    </button>
 
-                        <!-- Coin to Fiat Button -->
-                        <button type="button" onclick="openModal('cryptoToFiatModal')"
-                                class="btn btn-success w-full text-center">
-                            Coin to Fiat
-                        </button>
+                    <!-- Fiat to Coin Button -->
+                    <button type="button" onclick="openModal('fiatToCryptoModal')"
+                            class="btn btn-primary w-full text-center flex items-center justify-center">
+                        <i class="ri-exchange-dollar-line mr-1"></i> Fiat
+                    </button>
+
+                    <!-- Coin to Fiat Button -->
+                    <button type="button" onclick="openModal('cryptoToFiatModal')"
+                            class="btn btn-info w-full text-center flex items-center justify-center">
+                        <i class="ri-exchange-line mr-1"></i> Coin
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="form-label">Trade Type:</label>
+                        <select class="form-control" name="trade_type" id="assetType" onchange="updateAssetDropdown()">
+                            <option value="crypto">Crypto</option>
+                            <option value="stock">Stock</option>
+                            <option value="fiat">Fiat</option>
+                        </select>
                     </div>
 
-                    <div class="space-y-4">
-                        <div>
-                            <label class="form-label">Trade Type:</label>
-                            <select class="form-control" name="trade_type" id="assetType">
-                                <option value="Crypto">Crypto</option>
-                                <option value="Stocks">Stocks</option>
-                                <option value="Forex">Forex</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="form-label">Asset:</label>
-                            <div class="relative">
-                                <div class="flex items-center border border-gray-200 rounded-lg bg-white text-gray-900 px-3 py-2">
-                                    <input id="amount" type="text" name="amount" placeholder="100" class="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-400" />
-                                    <div class="relative ml-2">
-                                        <button id="dropdownButton" type="button" class="flex items-center justify-center space-x-2 text-sm bg-gray-100 px-3 py-1.5 rounded-lg hover:bg-gray-200">
-                                            <img id="selectedIcon" src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/svg/color/btc.svg" alt="BTC" class="w-4 h-4" />
-                                            <span id="selectedSymbol" class="text-gray-700">BTC</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1 text-gray-500">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </button>
-                                        <div id="dropdownMenu" class="absolute z-10 hidden mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg left-0 md:left-auto md:right-0 overflow-auto max-h-60">
-                                            <div class="p-2 border-b border-gray-200">
-                                                <input type="text" id="assetSearch" placeholder="Search for assets" class="w-full px-3 py-2 text-sm bg-gray-50 text-gray-900 rounded-lg border border-gray-200 placeholder-gray-500 focus:ring-1 focus:ring-blue-500 focus:outline-none" />
-                                            </div>
-                                            <ul class="max-h-52 overflow-y-auto text-sm" id="assetList">
-                                                {{-- Assets will be loaded here by javascript --}}
-                                            </ul>
+                    <div>
+                        <label class="form-label">Asset:</label>
+                        <div class="relative">
+                            <div class="flex items-center border border-gray-700 rounded-lg bg-gray-800 text-gray-100 px-3 py-2">
+                                <input id="amount" type="text" name="amount" placeholder="100" class="flex-1 bg-transparent outline-none text-gray-100 placeholder-gray-500" />
+                                <div class="relative ml-2">
+                                    <button id="dropdownButton" type="button" class="flex items-center justify-center space-x-2 text-sm bg-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-600">
+                                        <img id="selectedIcon" src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/svg/color/btc.svg" alt="BTC" class="w-4 h-4" />
+                                        <span id="selectedSymbol" class="text-gray-100">BTC</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1 text-gray-400">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div id="dropdownMenu" class="absolute z-10 hidden mt-1 w-64 bg-gray-800 border border-gray-700 rounded-lg shadow-lg left-0 md:left-auto md:right-0 overflow-auto max-h-60">
+                                        <div class="p-2 border-b border-gray-700">
+                                            <input type="text" id="assetSearch" placeholder="Search for assets" class="w-full px-3 py-2 text-sm bg-gray-700 text-gray-100 rounded-lg border border-gray-600 placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:outline-none" />
                                         </div>
+                                        <ul class="max-h-52 overflow-y-auto text-sm" id="assetList">
+                                            {{-- Assets will be loaded here by javascript --}}
+                                        </ul>
                                     </div>
                                 </div>
-                                <input type="hidden" name="assets" id="selectedAssetSymbol" value="BTC" />
                             </div>
+                            <input type="hidden" name="assets" id="selectedAssetSymbol" value="BTC" />
                         </div>
-
-                        <div>
-                            <label class="text-subheading">Current USD Balance: <span class="text-heading">{{ showAmount(auth()->user()->balance) }}</span></label>
-                        </div>
-                        <div>
-                            <label class="text-subheading">Current Asset Price: <span id="currentAssetPrice" class="text-heading">$0.00</span></label>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="form-label">Stop Loss:</label>
-                                <input type="number" name="loss" value="6800" class="form-control">
-                            </div>
-                            <div>
-                                <label class="form-label">Take Profit:</label>
-                                <input type="number" name="profit" value="32100" class="form-control">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="form-label">Duration:</label>
-                            <select class="form-control" name="duration">
-                                <option value="2">2 minutes</option>
-                                <option value="5">5 minutes</option>
-                                <option value="10">10 minutes</option>
-                            </select>
-                        </div>
-
-                        <button class="w-full btn btn-primary py-3 rounded-lg font-medium mt-4" type="submit" id="submitTrade">
-                            Place Trade
-                        </button>
                     </div>
-                </form>
-            </div>
+
+                    <!-- Balance Display -->
+                    <div class="balance-display">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-sm opacity-90">USD Balance:</span>
+                                <div class="text-lg font-bold">{{ showAmount(auth()->user()->balance) }}</div>
+                            </div>
+                            <div>
+                                <span class="text-sm opacity-90">Asset Balance:</span>
+                                <div class="text-lg font-bold" id="assetBalance">0.00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-subheading">Current Price: <span id="currentAssetPrice" class="text-heading">$0.00</span></label>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">Stop Loss:</label>
+                            <input type="number" name="loss" value="6800" class="form-control">
+                        </div>
+                        <div>
+                            <label class="form-label">Take Profit:</label>
+                            <input type="number" name="profit" value="32100" class="form-control">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Duration:</label>
+                        <select class="form-control" name="duration">
+                            <option value="2">2 minutes</option>
+                            <option value="5">5 minutes</option>
+                            <option value="10">10 minutes</option>
+                        </select>
+                    </div>
+
+                    <button class="w-full btn btn-primary py-3 rounded-lg font-medium mt-4 flex items-center justify-center" type="submit" id="submitTrade">
+                        <i class="ri-check-line mr-2"></i> Place Trade
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <!-- Trades Section -->
-    <div class="dashboard-card">
+    <!-- Trade History - Takes 2/3 on large screens -->
+    <div class="dashboard-card lg:col-span-2">
         <div class="card-header">
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                 <h3 class="text-heading">Trade History</h3>
                 <div class="flex space-x-2">
-                    <button class="px-4 py-2 text-sm bg-primary text-white rounded-md font-medium" id="openTradesBtn">Open</button>
-                    <button class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 bg-gray-100 rounded-md font-medium" id="closedTradesBtn">Completed</button>
+                    <button class="px-4 py-2 text-sm bg-primary text-white rounded-md font-medium active-tab-btn" id="openTradesBtn">
+                        <i class="ri-time-line mr-1"></i> Open
+                    </button>
+                    <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-100 bg-gray-800 rounded-md font-medium inactive-tab-btn" id="closedTradesBtn">
+                        <i class="ri-checkbox-circle-line mr-1"></i> Completed
+                    </button>
                 </div>
             </div>
         </div>
@@ -808,12 +863,12 @@
             <!-- Open Trades Table -->
             <div id="openTradesSection">
                 @if($userAssets->where('status', 'open')->isEmpty())
-                    <div class="empty-state">
+                    <div class="empty-state py-8">
                         <div class="empty-state-icon">
                             <i class="ri-exchange-funds-line"></i>
                         </div>
-                        <p class="empty-state-text">No open trades yet.</p>
-                        <button class="btn btn-primary inline-flex items-center" onclick="document.getElementById('tradeForm').scrollIntoView()">
+                        <p class="empty-state-text">No open trades yet</p>
+                        <button class="btn btn-primary inline-flex items-center mt-4" onclick="document.getElementById('tradeForm').scrollIntoView()">
                             <i class="ri-add-line mr-1"></i> Place a Trade
                         </button>
                     </div>
@@ -886,11 +941,11 @@
             <!-- Closed Trades Table -->
             <div id="closedTradesSection" class="hidden">
                 @if($userAssets->where('status', 'complete')->isEmpty())
-                    <div class="empty-state">
+                    <div class="empty-state py-8">
                         <div class="empty-state-icon">
                             <i class="ri-exchange-funds-line"></i>
                         </div>
-                        <p class="empty-state-text">No completed trades yet.</p>
+                        <p class="empty-state-text">No completed trades yet</p>
                     </div>
                 @else
                     <div class="overflow-x-auto">
@@ -953,6 +1008,270 @@
                     </div>
                 @endif
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Market Chart Section - Full Width with Enhanced TradingView -->
+<div class="dashboard-card mb-6">
+    <div class="card-header">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <h3 class="text-heading">Advanced Market Analysis</h3>
+            <div class="flex flex-wrap gap-2">
+                <!-- Chart Type Selector -->
+                <div class="flex items-center space-x-2">
+                    <button class="chart-type-btn active" data-type="crypto" id="cryptoChartBtn">
+                        <i class="ri-currency-line mr-1"></i> Crypto
+                    </button>
+                    <button class="chart-type-btn" data-type="stock" id="stockChartBtn">
+                        <i class="ri-line-chart-line mr-1"></i> Stocks
+                    </button>
+                    <button class="chart-type-btn" data-type="forex" id="forexChartBtn">
+                        <i class="ri-exchange-line mr-1"></i> Forex
+                    </button>
+                </div>
+
+                <!-- Timeframe Selector -->
+                <div class="flex items-center space-x-2">
+                    <select id="timeframeSelect" class="form-control text-xs py-1 px-2">
+                        <option value="1">1m</option>
+                        <option value="5">5m</option>
+                        <option value="15">15m</option>
+                        <option value="60">1h</option>
+                        <option value="240">4h</option>
+                        <option value="1D" selected>1D</option>
+                        <option value="1W">1W</option>
+                        <option value="1M">1M</option>
+                    </select>
+                </div>
+
+                <!-- Indicator Button -->
+                <button id="indicatorBtn" class="btn btn-outline text-xs py-1 px-2 flex items-center">
+                    <i class="ri-function-line mr-1"></i> Indicators
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-0 h-[550px]">
+        <!-- TradingView Widget Container -->
+        <div id="tradingview-chart" class="tradingview-widget-container">
+            <div id="tradingview-widget" style="height:100%;width:100%"></div>
+            <div class="tradingview-widget-copyright">
+                <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                    <span class="blue-text">Track all markets on TradingView</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Indicator Modal -->
+<div class="modal-overlay hidden" id="indicatorModal">
+    <div class="modal-content w-full max-w-2xl">
+        <div class="modal-header">
+            <h3 class="text-heading">Technical Indicators</h3>
+            <button class="modal-close" id="closeIndicatorModal">
+                ✖
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Popular Indicators -->
+                <button class="btn btn-outline flex items-center justify-start indicator-btn" data-indicator="MACD">
+                    <i class="ri-pulse-line mr-2"></i> MACD
+                </button>
+                <button class="btn btn-outline flex items-center justify-start indicator-btn" data-indicator="RSI">
+                    <i class="ri-dashboard-2-line mr-2"></i> RSI
+                </button>
+                <button class="btn btn-outline flex items-center justify-start indicator-btn" data-indicator="Bollinger Bands">
+                    <i class="ri-arrow-up-down-line mr-2"></i> Bollinger
+                </button>
+                <button class="btn btn-outline flex items-center justify-start indicator-btn" data-indicator="Volume">
+                    <i class="ri-bar-chart-2-line mr-2"></i> Volume
+                </button>
+                <button class="btn btn-outline flex items-center justify-start indicator-btn" data-indicator="Moving Average">
+                    <i class="ri-line-chart-line mr-2"></i> MA
+                </button>
+                <button class="btn btn-outline flex items-center justify-start indicator-btn" data-indicator="Stochastic">
+                    <i class="ri-speed-line mr-2"></i> Stochastic
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TradingView Script -->
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<!-- Custom Chart Script -->
+<script src="market-chart.js"></script>
+
+
+
+
+        <!-- Trading Performance Card -->
+        <div class="dashboard-card">
+            <div class="card-body space-y-6">
+                <!-- Trading Progress Card -->
+                <div>
+                    <h3 class="text-subheading mb-3">Trading Performance</h3>
+                    @php
+                        $completedTrades = $userAssets->where('status', 'complete')->count();
+                        $totalTrades = $userAssets->count();
+                        $progressPercent = $totalTrades > 0 ? ($completedTrades / $totalTrades) * 100 : 0;
+                    @endphp
+                    <div class="progress-container">
+                        <div class="progress-bar bg-success" style="width: {{ $progressPercent }}%"></div>
+                    </div>
+                    <div class="flex justify-between mt-1">
+                        <span class="text-subheading text-xs">{{ $completedTrades }} completed</span>
+                        <span class="text-subheading text-xs">{{ $totalTrades }} total</span>
+                    </div>
+                </div>
+
+                <!-- Signal Strength Card -->
+                <div>
+                    <h3 class="text-subheading mb-3">Market Signal Strength</h3>
+                    @php
+                        $signalStrength = 10; // This should be dynamic in your actual implementation
+                        $barCount = 5;
+                        $activeBarCount = ceil(($signalStrength / 100) * $barCount);
+                    @endphp
+                    <div class="signal-bars" id="signal-bars">
+                        @for ($i = 1; $i <= $barCount; $i++)
+                            @if ($i <= $activeBarCount)
+                                <div class="signal-bar"
+                                    style="background-color: {{ $i <= 1 ? 'var(--danger)' : ($i <= 3 ? 'var(--warning)' : 'var(--success)') }};"></div>
+                            @else
+                                <div class="signal-bar bg-gray-700"></div>
+                            @endif
+                        @endfor
+                    </div>
+                    <div class="flex justify-between mt-1">
+                        <span class="text-subheading text-xs">Low</span>
+                        <span class="text-xs font-medium signal-strength-value {{ $signalStrength > 50 ? 'text-success' : 'text-danger' }}">
+                            {{ $signalStrength }}%
+                        </span>
+                        <span class="text-subheading text-xs">High</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Buy Crypto Modal -->
+<div class="modal-overlay" id="buyCryptoModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="text-heading">Buy Cryptocurrency</h3>
+            <button onclick="closeModal('buyCryptoModal')" class="modal-close">
+                ✖
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <form action="{{ route('user.crypto.buy.store') }}" method="POST" class="space-y-4">
+                @csrf
+                <input type="hidden" name="type" value="buy_crypto">
+
+                <div>
+                    <label for="buy_fiatAmount" class="form-label">Amount to Spend (USD)</label>
+                    <input type="number" id="buy_fiatAmount" name="fiat_amount" step="0.01" min="0"
+                        class="form-control"
+                        placeholder="Enter amount in USD" required>
+                </div>
+
+                <div>
+                    <label for="buy_cryptoAmount" class="form-label">You will receive</label>
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="buy_cryptoAmount" name="crypto_amount" readonly
+                            class="form-control bg-gray-50">
+                        <span id="buy_cryptoSymbol" class="text-heading"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="buy_cryptoSelect" class="form-label">Select Cryptocurrency</label>
+                    <div class="relative flex items-center bg-gray-50 rounded-lg border border-gray-300">
+                        <img id="buy_cryptoIcon" src="" class="w-6 h-6 ml-3" alt="Crypto Icon">
+                        <select id="buy_cryptoSelect" name="currency" class="w-full py-2 px-3 pl-12 bg-transparent text-gray-900 rounded-lg focus:ring-1 focus:ring-blue-500 focus:outline-none" required>
+                            @foreach($currencies as $crypto)
+                                <option value="{{ $crypto->symbol }}" data-icon="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/{{ strtolower($crypto->symbol) }}.svg">
+                                    {{ $crypto->name }} ({{ $crypto->symbol }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full btn btn-success py-3 rounded-lg mt-4">
+                    Buy Crypto
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Sell Crypto Modal -->
+<div class="modal-overlay" id="sellCryptoModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="text-heading">Sell Cryptocurrency</h3>
+            <button onclick="closeModal('sellCryptoModal')" class="modal-close">
+                ✖
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <form action="{{ route('user.crypto.sell.store') }}" method="POST" class="space-y-4">
+                @csrf
+                <input type="hidden" name="type" value="sell_crypto">
+
+                <div>
+                    <label for="sell_cryptoAmount" class="form-label">Amount to Sell</label>
+                    <div class="flex items-center gap-2">
+                        <input type="number" id="sell_cryptoAmount" name="crypto_amount" step="0.00000001" min="0"
+                            class="form-control"
+                            placeholder="Enter crypto amount" required>
+                        <span id="sell_cryptoSymbol" class="text-heading"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="sell_fiatAmount" class="form-label">You will receive (USD)</label>
+                    <input type="text" id="sell_fiatAmount" name="fiat_amount" readonly
+                        class="form-control bg-gray-50">
+                </div>
+
+                <div>
+                    <label for="sell_cryptoSelect" class="form-label">Select Cryptocurrency</label>
+                    <div class="relative flex items-center bg-gray-50 rounded-lg border border-gray-300">
+                        <img id="sell_cryptoIcon" src="" class="w-6 h-6 ml-3" alt="Crypto Icon">
+                        <select id="sell_cryptoSelect" name="currency" class="w-full py-2 px-3 pl-12 bg-transparent text-gray-900 rounded-lg focus:ring-1 focus:ring-blue-500 focus:outline-none" required>
+                            @foreach($currencies as $crypto)
+                                <option value="{{ $crypto->symbol }}" data-icon="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/{{ strtolower($crypto->symbol) }}.svg">
+                                    {{ $crypto->name }} ({{ $crypto->symbol }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full btn btn-danger py-3 rounded-lg mt-4">
+                    Sell Crypto
+                </button>
+            </form>
         </div>
     </div>
 </div>
@@ -1052,7 +1371,7 @@
                         class="form-control bg-gray-50" readonly>
                 </div>
 
-                <button type="submit" class="w-full btn btn-success py-3 rounded-lg mt-4">
+                <button type="submit" class="w-full btn btn-info py-3 rounded-lg mt-4">
                     Convert to USD
                 </button>
             </form>
@@ -1061,382 +1380,226 @@
 </div>
 
 <script>
-    // Modal functions
-    function openModal(id) {
-        document.getElementById(id).classList.add('active');
-        document.body.style.overflow = 'hidden';
+// ================= TradingView Integration ==================
+
+// Global chart widget reference
+let tvWidget = null;
+let currentSymbol = 'BTCUSDT';
+let currentChartType = 'crypto';
+
+// DOM Elements for TradingView
+const cryptoChartBtn = document.getElementById('cryptoChartBtn');
+const stockChartBtn = document.getElementById('stockChartBtn');
+const forexChartBtn = document.getElementById('forexChartBtn');
+const timeframeSelect = document.getElementById('timeframeSelect');
+const indicatorBtn = document.getElementById('indicatorBtn');
+const indicatorModal = document.getElementById('indicatorModal');
+const indicatorButtons = document.querySelectorAll('.indicator-btn');
+
+// Initialize TradingView Widget
+function initTradingView() {
+    if(tvWidget !== null) {
+        tvWidget.remove();
+        tvWidget = null;
     }
 
-    function closeModal(id) {
-        document.getElementById(id).classList.remove('active');
-        document.body.style.overflow = '';
+    const widgetOptions = {
+        autosize: true,
+        symbol: `BINANCE:${currentSymbol}`,
+        interval: timeframeSelect.value,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#1e272e",
+        enable_publishing: false,
+        allow_symbol_change: true,
+        details: true,
+        hotlist: true,
+        calendar: true,
+        show_popup_button: true,
+        popup_width: "1000",
+        popup_height: "650",
+        studies: [
+            "MACD@tv-basicstudies",
+            "RSI@tv-basicstudies",
+            "Volume@tv-basicstudies"
+        ],
+        container_id: "tradingview-widget"
+    };
+
+    tvWidget = new TradingView.widget(widgetOptions);
+
+    // Handle symbol change events
+    tvWidget.onChartReady(() => {
+        tvWidget.chart().onSymbolChanged().subscribe(null, (symbol) => {
+            currentSymbol = symbol.split(':')[1].replace('USDT', '');
+        });
+    });
+}
+
+// Switch between chart types
+function switchChartType(type) {
+    currentChartType = type;
+    document.querySelectorAll('.chart-type-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    let symbolPrefix = '';
+    switch(type) {
+        case 'crypto':
+            document.querySelector(`.chart-type-btn[data-type="crypto"]`).classList.add('active');
+            symbolPrefix = 'BINANCE:';
+            currentSymbol = 'BTCUSDT';
+            break;
+        case 'stock':
+            document.querySelector(`.chart-type-btn[data-type="stock"]`).classList.add('active');
+            symbolPrefix = 'NASDAQ:';
+            currentSymbol = 'AAPL';
+            break;
+        case 'forex':
+            document.querySelector(`.chart-type-btn[data-type="forex"]`).classList.add('active');
+            symbolPrefix = 'FX:';
+            currentSymbol = 'EURUSD';
+            break;
     }
 
-    // Close modals when clicking outside
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal-overlay')) {
-            closeModal(event.target.id);
-        }
+    if(tvWidget) {
+        tvWidget.chart().setSymbol(`${symbolPrefix}${currentSymbol}`);
+    }
+}
+
+// Update chart timeframe
+function updateChartTimeframe() {
+    const timeframe = timeframeSelect.value;
+    if(tvWidget) {
+        tvWidget.chart().setResolution(timeframe);
+    }
+}
+
+// Add indicator to chart
+function addIndicator(indicator) {
+    if(!tvWidget) return;
+
+    switch(indicator) {
+        case 'MACD':
+            tvWidget.chart().createStudy('Moving Average Convergence Divergence', false, false);
+            break;
+        case 'RSI':
+            tvWidget.chart().createStudy('Relative Strength Index', false, false, [14]);
+            break;
+        case 'Bollinger Bands':
+            tvWidget.chart().createStudy('Bollinger Bands', false, false, [20, 2]);
+            break;
+        case 'Volume':
+            tvWidget.chart().createStudy('Volume', false, false);
+            break;
+        case 'Moving Average':
+            tvWidget.chart().createStudy('Moving Average', false, false, [50]);
+            break;
+        case 'Stochastic':
+            tvWidget.chart().createStudy('Stochastic', false, false);
+            break;
+    }
+    closeModal('indicatorModal');
+}
+
+// Update chart when asset changes from trade panel
+function updateTradingViewChart(symbol, type) {
+    if(!tvWidget) return;
+
+    let tvSymbol;
+    switch(type) {
+        case 'crypto':
+            tvSymbol = `BINANCE:${symbol}USDT`;
+            break;
+        case 'stock':
+            tvSymbol = `NASDAQ:${symbol}`;
+            break;
+        case 'forex':
+            tvSymbol = `FX:${symbol}`;
+            break;
     }
 
-    // Tab switching
-    const tabButtons = document.querySelectorAll('.tab-nav-item');
-    const tabContents = document.querySelectorAll('.tab-content');
+    tvWidget.chart().setSymbol(tvSymbol);
+    currentSymbol = symbol;
+    currentChartType = type;
+}
 
-    tabButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
+// Event Listeners for TradingView
+cryptoChartBtn.addEventListener('click', () => switchChartType('crypto'));
+stockChartBtn.addEventListener('click', () => switchChartType('stock'));
+forexChartBtn.addEventListener('click', () => switchChartType('forex'));
+timeframeSelect.addEventListener('change', updateChartTimeframe);
+indicatorBtn.addEventListener('click', () => openModal('indicatorModal'));
 
-            button.classList.add('active');
-            const tabId = button.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
-        });
+indicatorButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        addIndicator(btn.dataset.indicator);
     });
+});
 
-    // Trade table switching
-    document.getElementById('openTradesBtn').addEventListener('click', function() {
-        this.classList.add('bg-primary', 'text-white');
-        this.classList.remove('text-gray-600', 'bg-gray-100');
-        document.getElementById('closedTradesBtn').classList.remove('bg-primary', 'text-white');
-        document.getElementById('closedTradesBtn').classList.add('text-gray-600', 'bg-gray-100');
-        document.getElementById('openTradesSection').classList.remove('hidden');
-        document.getElementById('closedTradesSection').classList.add('hidden');
+// ================= Shared Modal + UI Handling =================
+
+// General modal functions
+function openModal(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close modals when clicking outside
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+        closeModal(event.target.id);
+    }
+}
+
+// ================= Other UI and Trade Logic =================
+
+// Tab switching
+const tabButtons = document.querySelectorAll('.tab-nav-item');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
     });
+});
 
-    document.getElementById('closedTradesBtn').addEventListener('click', function() {
-        this.classList.add('bg-primary', 'text-white');
-        this.classList.remove('text-gray-600', 'bg-gray-100');
-        document.getElementById('openTradesBtn').classList.remove('bg-primary', 'text-white');
-        document.getElementById('openTradesBtn').classList.add('text-gray-600', 'bg-gray-100');
-        document.getElementById('closedTradesSection').classList.remove('hidden');
-        document.getElementById('openTradesSection').classList.add('hidden');
-    });
+// Trade table switching
+document.getElementById('openTradesBtn').addEventListener('click', function() {
+    this.classList.add('bg-primary', 'text-white');
+    this.classList.remove('text-gray-600', 'bg-gray-100');
+    document.getElementById('closedTradesBtn').classList.remove('bg-primary', 'text-white');
+    document.getElementById('closedTradesBtn').classList.add('text-gray-600', 'bg-gray-100');
+    document.getElementById('openTradesSection').classList.remove('hidden');
+    document.getElementById('closedTradesSection').classList.add('hidden');
+});
 
-    // Initialize Fiat to Crypto conversion
-    document.addEventListener('DOMContentLoaded', function() {
-        const f2c_fiatAmount = document.getElementById('f2c_fiatAmount');
-        const f2c_cryptoAmount = document.getElementById('f2c_cryptoAmount');
-        const f2c_cryptoSelect = document.getElementById('f2c_cryptoSelect');
-        const f2c_cryptoIcon = document.getElementById('f2c_cryptoIcon');
-        const f2c_cryptoSymbol = document.getElementById('f2c_cryptoSymbol');
+document.getElementById('closedTradesBtn').addEventListener('click', function() {
+    this.classList.add('bg-primary', 'text-white');
+    this.classList.remove('text-gray-600', 'bg-gray-100');
+    document.getElementById('openTradesBtn').classList.remove('bg-primary', 'text-white');
+    document.getElementById('openTradesBtn').classList.add('text-gray-600', 'bg-gray-100');
+    document.getElementById('closedTradesSection').classList.remove('hidden');
+    document.getElementById('openTradesSection').classList.add('hidden');
+});
 
-        function updateF2CConversion() {
-            const fiatAmount = parseFloat(f2c_fiatAmount.value) || 0;
-            const cryptoSymbol = f2c_cryptoSelect.value;
-
-            if (fiatAmount <= 0 || !cryptoSymbol) {
-                f2c_cryptoAmount.value = '';
-                return;
-            }
-
-            fetch(`https://min-api.cryptocompare.com/data/price?fsym=${cryptoSymbol}&tsyms=USD`)
-                .then(response => response.json())
-                .then(data => {
-                    const price = data.USD;
-                    if (price && price > 0) {
-                        const cryptoAmount = fiatAmount / price;
-                        f2c_cryptoAmount.value = cryptoAmount.toFixed(8);
-                        f2c_cryptoSymbol.textContent = cryptoSymbol;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching crypto price:', error);
-                    f2c_cryptoAmount.value = '';
-                });
-        }
-
-        f2c_fiatAmount.addEventListener('input', updateF2CConversion);
-        f2c_cryptoSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            f2c_cryptoIcon.src = selectedOption.getAttribute('data-icon');
-            updateF2CConversion();
-        });
-
-        // Set initial crypto icon
-        if (f2c_cryptoSelect.value) {
-            f2c_cryptoIcon.src = f2c_cryptoSelect.options[f2c_cryptoSelect.selectedIndex].getAttribute('data-icon');
-            updateF2CConversion();
-        }
-    });
-
-    // Initialize Crypto to Fiat conversion
-    document.addEventListener('DOMContentLoaded', function() {
-        const c2f_cryptoAmount = document.getElementById('c2f_cryptoAmount');
-        const c2f_fiatAmount = document.getElementById('c2f_fiatAmount');
-        const c2f_cryptoSelect = document.getElementById('c2f_cryptoSelect');
-        const c2f_cryptoIcon = document.getElementById('c2f_cryptoIcon');
-
-        function updateC2FConversion() {
-            const cryptoAmount = parseFloat(c2f_cryptoAmount.value) || 0;
-            const cryptoSymbol = c2f_cryptoSelect.value;
-
-            if (cryptoAmount <= 0 || !cryptoSymbol) {
-                c2f_fiatAmount.value = '';
-                return;
-            }
-
-            fetch(`https://min-api.cryptocompare.com/data/price?fsym=${cryptoSymbol}&tsyms=USD`)
-                .then(response => response.json())
-                .then(data => {
-                    const price = data.USD;
-                    if (price && price > 0) {
-                        const fiatAmount = cryptoAmount * price;
-                        c2f_fiatAmount.value = `$${fiatAmount.toFixed(2)}`;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching crypto price:', error);
-                    c2f_fiatAmount.value = '';
-                });
-        }
-
-        c2f_cryptoAmount.addEventListener('input', updateC2FConversion);
-        c2f_cryptoSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            c2f_cryptoIcon.src = selectedOption.getAttribute('data-icon');
-            updateC2FConversion();
-        });
-
-        // Set initial crypto icon
-        if (c2f_cryptoSelect.value) {
-            c2f_cryptoIcon.src = c2f_cryptoSelect.options[c2f_cryptoSelect.selectedIndex].getAttribute('data-icon');
-        }
-    });
-
-    // Asset selection dropdown
-    document.addEventListener('DOMContentLoaded', function() {
-        const dropdownButton = document.getElementById("dropdownButton");
-        const dropdownMenu = document.getElementById("dropdownMenu");
-        const selectedIcon = document.getElementById("selectedIcon");
-        const selectedSymbol = document.getElementById("selectedSymbol");
-        const selectedAssetSymbol = document.getElementById("selectedAssetSymbol");
-        const assetSearch = document.getElementById("assetSearch");
-        const assetType = document.getElementById("assetType");
-        const assetList = document.getElementById("assetList");
-        const currentAssetPrice = document.getElementById("currentAssetPrice");
-
-        let stocksData = [];
-        let forexData = [];
-
-        // Fetch stock data
-        fetch('https://tradededpro.com/app/assets/global/jsons/stock.json')
-            .then(response => response.json())
-            .then(data => {
-                stocksData = data;
-                updateAssetPrice();
-            })
-            .catch(error => console.error('Error fetching stock data:', error));
-
-        // Fetch forex data
-        fetch('https://tradededpro.com/app/assets/global/jsons/forex.json')
-            .then(response => response.json())
-            .then(data => {
-                forexData = Object.entries(data.usd).map(([symbol, rate]) => ({
-                    symbol: symbol.toUpperCase(),
-                    name: symbol.toUpperCase(),
-                    rate: rate
-                }));
-                updateAssetPrice();
-            })
-            .catch(error => console.error('Error fetching forex data:', error));
-
-        // Function to update asset price
-        function updateAssetPrice() {
-            const symbol = selectedSymbol.textContent;
-            const type = assetType.value;
-
-            if (type === 'Crypto') {
-                fetch(`https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const price = data.USD;
-                        if (price) {
-                            currentAssetPrice.textContent = `$${price.toFixed(2)}`;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching crypto price:', error);
-                        currentAssetPrice.textContent = '$0.00';
-                    });
-            } else if (type === 'Stocks') {
-                const stock = stocksData.find(s => s.symbol === symbol);
-                if (stock && stock.price) {
-                    currentAssetPrice.textContent = `$${stock.price.toFixed(2)}`;
-                } else {
-                    currentAssetPrice.textContent = '$0.00';
-                }
-            } else if (type === 'Forex') {
-                const forex = forexData.find(f => f.symbol === symbol);
-                if (forex && forex.rate) {
-                    currentAssetPrice.textContent = `$${forex.rate.toFixed(4)}`;
-                } else {
-                    currentAssetPrice.textContent = '$0.00';
-                }
-            }
-        }
-
-        // Function to populate asset list based on selected type
-        function populateAssetList(type) {
-            assetList.innerHTML = ''; // Clear existing list
-
-            let assets = [];
-            let iconBaseUrl = '';
-
-            if (type === 'Crypto') {
-                assets = @json($assets);
-                iconBaseUrl = 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/svg/color/';
-            } else if (type === 'Stocks') {
-                assets = stocksData;
-            } else if (type === 'Forex') {
-                assets = forexData;
-            }
-
-            assets.forEach(asset => {
-                let iconSrc = '';
-                if (type === 'Crypto') {
-                    const symbollowcase = asset.symbol.toLowerCase();
-                    iconSrc = iconBaseUrl + symbollowcase + '.svg';
-                } else if (type === 'Stocks') {
-                    iconSrc = asset.logoUrl;
-                } else if (type === 'Forex') {
-                    iconSrc = `https://flagcdn.com/36x27/${asset.symbol.substring(0, 2).toLowerCase()}.png`;
-                }
-
-                const listItem = document.createElement('li');
-                listItem.classList.add('asset-item', 'flex', 'items-center', 'justify-between', 'px-4', 'py-2', 'hover:bg-gray-100', 'cursor-pointer');
-                listItem.setAttribute('data-symbol', asset.symbol);
-                listItem.setAttribute('data-name', asset.symbol);
-                listItem.setAttribute('data-icon', iconSrc);
-
-                listItem.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <img src="${iconSrc}" alt="${asset.symbol}" class="w-4 h-4" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/0/381.png'">
-                        <span class="text-gray-700">${asset.symbol.toUpperCase()}</span>
-                    </div>
-                    <span class="text-gray-500 text-xs">${type}</span>
-                `;
-                assetList.appendChild(listItem);
-
-                // Add click listener to asset item
-                listItem.addEventListener("click", () => {
-                    const symbol = listItem.getAttribute("data-symbol");
-                    const name = listItem.getAttribute("data-name");
-                    const icon = listItem.getAttribute("data-icon");
-
-                    // Update dropdown button
-                    selectedIcon.src = icon;
-                    selectedSymbol.textContent = symbol;
-                    selectedAssetSymbol.value = symbol;
-
-                    // Update asset price
-                    updateAssetPrice();
-
-                    // Close dropdown
-                    dropdownMenu.classList.add("hidden");
-                });
-            });
-        }
-
-        // Initial population of asset list
-        populateAssetList(assetType.value);
-
-        // Repopulate asset list on asset type change
-        assetType.addEventListener('change', (event) => {
-            populateAssetList(event.target.value);
-            updateAssetPrice();
-        });
-
-        // Toggle dropdown
-        dropdownButton.addEventListener("click", () => {
-            dropdownMenu.classList.toggle("hidden");
-            if (!dropdownMenu.classList.contains('hidden')) {
-                assetSearch.focus();
-            }
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!dropdownMenu.contains(event.target) && !dropdownButton.contains(event.target)) {
-                dropdownMenu.classList.add("hidden");
-            }
-        });
-
-        // Search functionality
-        assetSearch.addEventListener("input", function(e) {
-            const query = e.target.value.toLowerCase();
-            document.querySelectorAll(".asset-item").forEach((item) => {
-                const text = item.textContent.toLowerCase();
-                item.style.display = text.includes(query) ? "flex" : "none";
-            });
-        });
-
-        // Update signal strength periodically
-        function updateSignalStrength(strength) {
-            const bars = document.querySelectorAll('.signal-bar');
-            const activeCount = Math.ceil((strength / 100) * bars.length);
-
-            bars.forEach((bar, index) => {
-                if (index < activeCount) {
-                    if (index < 1) {
-                        bar.style.backgroundColor = 'var(--danger)';
-                    } else if (index < 3) {
-                        bar.style.backgroundColor = 'var(--warning)';
-                    } else {
-                        bar.style.backgroundColor = 'var(--success)';
-                    }
-                    bar.classList.remove('bg-gray-200');
-                } else {
-                    bar.style.backgroundColor = '';
-                    bar.classList.add('bg-gray-200');
-                }
-            });
-
-            const strengthDisplay = document.querySelector('.signal-strength-value');
-            strengthDisplay.textContent = `${strength}%`;
-            strengthDisplay.classList.toggle('text-success', strength > 50);
-            strengthDisplay.classList.toggle('text-danger', strength <= 50);
-        }
-
-        // Example: Update signal strength every 5 seconds with random value
-        setInterval(() => {
-            const newStrength = Math.floor(Math.random() * 100);
-            updateSignalStrength(newStrength);
-        }, 5000);
-    });
-
-    // Form submission with validation
-    document.getElementById('tradeForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const form = this;
-        const submitButton = document.getElementById('submitTrade');
-        const originalButtonText = submitButton.textContent;
-
-        // Show loading state
-        submitButton.disabled = true;
-        submitButton.innerHTML = '<i class="ri-loader-4-line animate-spin mr-1"></i> Processing...';
-
-        // Perform form validation
-        const amount = parseFloat(form.amount.value);
-        const balance = parseFloat("{{ auth()->user()->balance }}");
-
-        if (isNaN(amount) || amount <= 0) {
-            alert('Please enter a valid amount');
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-            return;
-        }
-
-        if (amount > balance) {
-            alert('Insufficient balance for this trade');
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-            return;
-        }
-
-        // If validation passes, submit the form
-        form.submit();
-    });
+// ================= Init on Page Load =================
+document.addEventListener('DOMContentLoaded', () => {
+    initTradingView();
+    // keep your Fiat2Crypto, Crypto2Fiat, asset dropdown, signal strength, form validation init here
+});
 </script>
+
 @endsection

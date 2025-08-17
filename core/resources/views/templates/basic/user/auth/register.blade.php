@@ -154,7 +154,7 @@
             <div class="logo-container flex items-center space-x-2">
     <a href="#" class="flex items-center transform hover:scale-105 transition duration-300">
         <!--<img src="{{ siteLogo() }}" alt="Logo" class="h-12 w-auto rounded-full glow-box">-->
-        <span class="text-xl font-semibold text-white">TradePro</span>
+        <span class="text-xl font-semibold text-white">HaraTrading</span>
     </a>
 </div>
 

@@ -20,7 +20,7 @@
                             <th class="px-4 py-3">Date</th>
                             <th class="px-4 py-3">Reference</th>
                             <th class="px-4 py-3">Method</th>
-                            <th class="px-4 py-3">Type</th>
+                            <th class="px-4 py-3">Network</th>
                             <th class="px-4 py-3">Amount</th>
                             <th class="px-4 py-3">In (USD)</th>
                             <th class="px-4 py-3">Status</th>
@@ -32,8 +32,8 @@
                                 <td class="px-4 py-3 text-white">{{ $deposit->created_at->format('Y-m-d H:i') }}</td>
                                 <td class="px-4 py-3 text-white">{{ $deposit->reference }}</td>
                                 <td class="px-4 py-3 text-white">{{ $deposit->currency }}</td>
-                                <td class="px-4 py-3 text-white">{{ $deposit->type }}</td>
-                                <td class="px-4 py-3 text-white">{{ number_format($deposit->amount, 2) }}</td>
+                                <td class="px-4 py-3 text-white">{{ $deposit->network ?? 'N/A' }}</td>
+                                <td class="px-4 py-3 text-white">{{ number_format($deposit->amount, 8) }} {{ $deposit->currency }}</td>
                                 <td class="px-4 py-3 text-white" id="usd-amount-{{ $deposit->id }}"></td>
                                 <td class="px-4 py-3 text-white">
                                     <span class="px-3 py-1 rounded-full text-xs font-medium
@@ -80,7 +80,7 @@
     <div id="depositModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4">
         <div class="bg-gray-800 rounded-xl shadow-xl w-full max-w-md p-6 border border-gray-700">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold text-white">Deposit</h2>
+                <h2 class="text-xl font-bold text-white">Deposit Crypto</h2>
                 <button id="closeModalButton" class="text-gray-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -89,33 +89,40 @@
             </div>
 
             <p class="text-gray-400 text-sm mb-6">
-                Choose method, enter amount and upload payment proof to proceed.
+                Select cryptocurrency and network to get deposit address
             </p>
 
-            <form action="{{ route('user.crypto.deposit.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.crypto.deposit.store') }}" method="POST" enctype="multipart/form-data" id="depositForm">
                 @csrf
                 <input type="hidden" name="type" value="crypto">
 
                 <div class="space-y-4">
-                    <!-- Method -->
+                    <!-- Cryptocurrency Selection -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Method:</label>
-                        <select name="currency" id="cryptoMethod" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-white focus:ring-blue-500 focus:border-blue-500" required>
-                            @foreach($gateways as $currency)
-                                <option
-                                    value="{{ $currency->name }}"
-                                    data-wallet="{{ $currency->description }}"
-                                    data-icon="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/svg/color/{{ strtolower($currency->name) }}.svg"
-                                >
-                                    {{ $currency->name }}
-                                </option>
-                            @endforeach
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Cryptocurrency:</label>
+                        <select name="currency" id="cryptoCurrency" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-white focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" selected disabled>Select cryptocurrency</option>
+                            <option value="BTC">Bitcoin (BTC)</option>
+                            <option value="ETH">Ethereum (ETH)</option>
+                            <option value="USDT">Tether (USDT)</option>
+                            <option value="USDC">USD Coin (USDC)</option>
+                            <option value="SOL">Solana (SOL)</option>
+                            <option value="TRX">Tron (TRX)</option>
                         </select>
                     </div>
 
-                    <!-- Wallet -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Address:</label>
+                    <!-- Network Selection (will be populated dynamically) -->
+                    <div id="networkSelectionContainer" class="hidden">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Network:</label>
+                        <select name="network" id="cryptoNetwork" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-white focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="" selected disabled>Select network</option>
+                            <!-- Networks will be populated here based on cryptocurrency selection -->
+                        </select>
+                    </div>
+
+                    <!-- Deposit Address (shown after network selection) -->
+                    <div id="addressContainer" class="hidden">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Deposit Address:</label>
                         <div class="flex items-center space-x-2">
                             <input type="text" id="walletAddress" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white text-sm" readonly>
                             <button type="button" id="copyAddressButton" class="text-gray-400 hover:text-blue-400 transition">
@@ -125,25 +132,27 @@
                                 </svg>
                             </button>
                         </div>
+                        <p class="text-xs text-red-400 mt-1" id="networkWarning">Make sure you're sending through the correct network to avoid loss of funds.</p>
                     </div>
 
                     <!-- Amount -->
-                    <div>
+                    <div id="amountContainer" class="hidden">
                         <label class="block text-sm font-medium text-gray-300 mb-1">Amount:</label>
                         <div class="flex items-center">
-                            <input type="text" name="amount" value="0.00" required class="w-full bg-gray-700 border border-gray-600 rounded-l-lg px-4 py-2 text-white">
-                            <span id="cryptoIcon" class="bg-gray-700 border border-gray-600 rounded-r-lg px-4 py-2 text-white min-w-[70px] flex items-center justify-center"></span>
+                            <input type="number" name="amount" min="0.00000001" step="0.00000001" placeholder="0.00" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                            <span id="cryptoCurrencySymbol" class="bg-gray-700 border border-gray-600 rounded-r-lg px-4 py-2 text-white min-w-[70px] flex items-center justify-center ml-2"></span>
                         </div>
                     </div>
 
                     <!-- Payment Proof -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1">Payment Proof:</label>
-                        <input type="file" name="proof" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-gray-300 file:mr-4 file:py-1 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-blue-600 file:text-white hover:file:bg-blue-700">
+                    <div id="proofContainer" class="hidden">
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Transaction Hash/Proof:</label>
+                        <input type="text" name="proof" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white" placeholder="Enter transaction hash">
+                        <p class="text-xs text-gray-400 mt-1">Please provide the transaction hash from your wallet</p>
                     </div>
 
-                    <!-- Submit -->
-                    <div class="pt-2">
+                    <!-- Submit Button -->
+                    <div class="pt-2 hidden" id="submitContainer">
                         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-medium transition">
                             Submit Deposit
                         </button>
@@ -155,13 +164,151 @@
 </main>
 
 <script>
+    // Crypto networks and addresses
+    const cryptoNetworks = {
+        BTC: {
+            networks: [
+                { name: 'Bitcoin Network', value: 'BTC' }
+            ],
+            address: 'bc1q2vn9hhsdgej2p8jd89wfnfj85kfgy9adh7vyxs'
+        },
+        ETH: {
+            networks: [
+                { name: 'Ethereum Network (ERC20)', value: 'ETH' }
+            ],
+            address: '0x1979B6A224074DfC7C05289b260af113F198a5bD'
+        },
+        USDT: {
+            networks: [
+                { name: 'Ethereum Network (ERC20)', value: 'USDT_ERC20' },
+                { name: 'Tron Network (TRC20)', value: 'USDT_TRC20' },
+                { name: 'Solana Network', value: 'USDT_SOL' }
+            ],
+            addresses: {
+                'USDT_ERC20': '0x1979B6A224074DfC7C05289b260af113F198a5bD',
+                'USDT_TRC20': 'TSUGbqhpf4J4YAEL8Lt6kGTBoJbukHseNu',
+                'USDT_SOL': 'DZN8jHdpAC5NsoXtYN8ZeYPxqxKmceXUPGa4fPo6CkzV'
+            }
+        },
+        USDC: {
+            networks: [
+                { name: 'Ethereum Network (ERC20)', value: 'USDC_ERC20' },
+                { name: 'Tron Network (TRC20)', value: 'USDC_TRC20' },
+                { name: 'Solana Network', value: 'USDC_SOL' }
+            ],
+            addresses: {
+                'USDC_ERC20': '0x1979B6A224074DfC7C05289b260af113F198a5bD',
+                'USDC_TRC20': 'TSUGbqhpf4J4YAEL8Lt6kGTBoJbukHseNu',
+                'USDC_SOL': 'DZN8jHdpAC5NsoXtYN8ZeYPxqxKmceXUPGa4fPo6CkzV'
+            }
+        },
+        SOL: {
+            networks: [
+                { name: 'Solana Network', value: 'SOL' }
+            ],
+            address: 'DZN8jHdpAC5NsoXtYN8ZeYPxqxKmceXUPGa4fPo6CkzV'
+        },
+        TRX: {
+            networks: [
+                { name: 'Tron Network', value: 'TRX' }
+            ],
+            address: 'TSUGbqhpf4J4YAEL8Lt6kGTBoJbukHseNu'
+        }
+    };
+
     // Toggle Modal
     function openModal() {
         document.getElementById('depositModal').classList.remove('hidden');
+        resetForm();
     }
 
     document.getElementById('closeModalButton')?.addEventListener('click', () => {
         document.getElementById('depositModal').classList.add('hidden');
+        resetForm();
+    });
+
+    // Reset form to initial state
+    function resetForm() {
+        document.getElementById('networkSelectionContainer').classList.add('hidden');
+        document.getElementById('addressContainer').classList.add('hidden');
+        document.getElementById('amountContainer').classList.add('hidden');
+        document.getElementById('proofContainer').classList.add('hidden');
+        document.getElementById('submitContainer').classList.add('hidden');
+        document.getElementById('cryptoNetwork').innerHTML = '<option value="" selected disabled>Select network</option>';
+    }
+
+    // Handle cryptocurrency selection change
+    document.getElementById('cryptoCurrency').addEventListener('change', function() {
+        const selectedCrypto = this.value;
+        const networkContainer = document.getElementById('networkSelectionContainer');
+        const networkSelect = document.getElementById('cryptoNetwork');
+
+        // Reset other fields
+        document.getElementById('addressContainer').classList.add('hidden');
+        document.getElementById('amountContainer').classList.add('hidden');
+        document.getElementById('proofContainer').classList.add('hidden');
+        document.getElementById('submitContainer').classList.add('hidden');
+
+        if (selectedCrypto) {
+            // Populate networks
+            networkSelect.innerHTML = '<option value="" selected disabled>Select network</option>';
+            cryptoNetworks[selectedCrypto].networks.forEach(network => {
+                const option = document.createElement('option');
+                option.value = network.value;
+                option.textContent = network.name;
+                networkSelect.appendChild(option);
+            });
+
+            // Show network selection
+            networkContainer.classList.remove('hidden');
+        } else {
+            networkContainer.classList.add('hidden');
+        }
+    });
+
+    // Handle network selection change
+    document.getElementById('cryptoNetwork').addEventListener('change', function() {
+        const selectedCrypto = document.getElementById('cryptoCurrency').value;
+        const selectedNetwork = this.value;
+        const addressContainer = document.getElementById('addressContainer');
+        const walletAddress = document.getElementById('walletAddress');
+
+        if (selectedNetwork) {
+            // Set the wallet address based on selection
+            if (selectedCrypto === 'USDT' || selectedCrypto === 'USDC') {
+                walletAddress.value = cryptoNetworks[selectedCrypto].addresses[selectedNetwork];
+            } else {
+                walletAddress.value = cryptoNetworks[selectedCrypto].address;
+            }
+
+            // Set currency symbol for amount input
+            document.getElementById('cryptoCurrencySymbol').textContent = selectedCrypto;
+
+            // Show address and other fields
+            addressContainer.classList.remove('hidden');
+            document.getElementById('amountContainer').classList.remove('hidden');
+            document.getElementById('proofContainer').classList.remove('hidden');
+            document.getElementById('submitContainer').classList.remove('hidden');
+        } else {
+            addressContainer.classList.add('hidden');
+            document.getElementById('amountContainer').classList.add('hidden');
+            document.getElementById('proofContainer').classList.add('hidden');
+            document.getElementById('submitContainer').classList.add('hidden');
+        }
+    });
+
+    // Copy address button
+    document.getElementById('copyAddressButton')?.addEventListener('click', function() {
+        const walletAddress = document.getElementById('walletAddress');
+        walletAddress.select();
+        document.execCommand('copy');
+
+        // Show copied feedback
+        const originalText = this.innerHTML;
+        this.innerHTML = '<svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+        setTimeout(() => {
+            this.innerHTML = originalText;
+        }, 2000);
     });
 </script>
 @endsection

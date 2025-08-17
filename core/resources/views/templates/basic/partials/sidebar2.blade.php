@@ -30,24 +30,13 @@
         <a href="{{ route('market.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
             <i class="ri-line-chart-line"></i> Markets
         </a>
-        <a href="{{ route('trade.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-            <i class="ri-exchange-box-line"></i> Trade
-        </a>
-        <a href="{{ route('subscribers.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-            <i class="ri-radio-line"></i> Subscribe
-        </a>
-        <a href="{{ route('user.signals.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-            <i class="ri-signal-tower-line"></i> Signals
-        </a>
+      
+        
+       
         <a href="{{ route('staking.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
             <i class="ri-money-dollar-circle-line"></i> Stake
         </a>
-        <a href="#" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-            <i class="ri-share-forward-line"></i> Referrals <span class="ml-2 text-xs text-purple-300">(Coming Soon)</span>
-        </a>
-        <a href="#" onclick="walletNotAvailable()" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-            <i class="ri-wallet-3-line"></i> Connect wallet
-        </a>
+        
         <script>
             function walletNotAvailable() {
                 Swal.fire({
@@ -59,9 +48,7 @@
                 });
             }
         </script>
-        <a href="{{ route('copy.expert.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-            <i class="ri-user-follow-line"></i> Copy Experts
-        </a>
+  
         <a href="{{ route('user.profile.setting') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
             <i class="ri-settings-3-line"></i> Settings
         </a>
@@ -103,24 +90,14 @@
                 <a href="{{ route('market.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
                     <i class="ri-line-chart-line text-2xl"></i> Markets
                 </a>
-                <a href="{{ route('trade.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-                    <i class="ri-exchange-box-line text-2xl"></i> Trade
-                </a>
-                <a href="{{ route('subscribers.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-                    <i class="ri-radio-line text-2xl"></i> Subscribe
-                </a>
-                <a href="{{ route('user.signals.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-                    <i class="ri-signal-tower-line text-2xl"></i> Signals
-                </a>
+               
+              
+            
                 <a href="{{ route('staking.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
                     <i class="ri-money-dollar-circle-line text-2xl"></i> Stake
                 </a>
-                <a href="#" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-400 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-                    <i class="ri-wallet-3-line text-2xl"></i> Connect wallet
-                </a>
-                <a href="{{ route('copy.expert.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
-                    <i class="ri-user-follow-line text-2xl"></i> Copy Experts
-                </a>
+             
+              
                 <a href="{{ route('user.profile.setting') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
                     <i class="ri-settings-3-line text-2xl"></i> Settings
                 </a>
