@@ -91,11 +91,11 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transition: all 0.5s ease;
+            /* transition: all 0.5s ease; */ /* Removed transition */
         }
 
         .logo:hover {
-            transform: scale(1.05);
+            /* transform: scale(1.05); */ /* Removed animation */
         }
 
         .logo i {
@@ -120,7 +120,7 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            /* transition: all 0.3s ease; */ /* Removed transition */
             position: relative;
             font-size: 1.1rem;
         }
@@ -133,7 +133,7 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             bottom: -5px;
             left: 0;
-            transition: width 0.3s ease;
+            /* transition: width 0.3s ease; */ /* Removed transition */
         }
 
         .nav-links a:hover::after {
@@ -145,7 +145,7 @@
             padding: 0.8rem 1.5rem;
             border-radius: 50px;
             font-weight: 700;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */ /* Removed transition */
             text-decoration: none;
             font-size: 1rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -159,7 +159,7 @@
 
         .btn-login:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
+            /* transform: translateY(-3px); */ /* Removed animation */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
@@ -170,7 +170,7 @@
         }
 
         .btn-register:hover {
-            transform: translateY(-3px) scale(1.05);
+            /* transform: translateY(-3px) scale(1.05); */ /* Removed animation */
             box-shadow: 0 10px 30px rgba(123, 44, 191, 0.4);
         }
 
@@ -179,7 +179,7 @@
             font-size: 1.8rem;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
+            /* transition: all 0.3s ease; */ /* Removed transition */
         }
 
         .mobile-menu:hover {
@@ -204,13 +204,13 @@
         .hero-text {
             flex: 1;
             padding-right: 3rem;
-            animation: fadeInLeft 1s ease;
+            /* animation: fadeInLeft 1s ease; */ /* Removed animation */
         }
 
         .hero-image {
             flex: 1;
             position: relative;
-            animation: float 6s ease-in-out infinite;
+            /* animation: float 6s ease-in-out infinite; */ /* Removed animation */
         }
 
         .hero-image img {
@@ -219,12 +219,12 @@
             border-radius: 20px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
             transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); */ /* Removed transition */
             filter: drop-shadow(0 0 20px rgba(123, 44, 191, 0.5));
         }
 
         .hero-image:hover img {
-            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) scale(1.03);
+            /* transform: perspective(1000px) rotateY(-5deg) rotateX(2deg) scale(1.03); */ /* Removed animation */
         }
 
         .hero h1 {
@@ -254,7 +254,7 @@
             padding: 1rem 2.2rem;
             border-radius: 50px;
             font-weight: 700;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); */ /* Removed transition */
             text-decoration: none;
             display: inline-block;
             text-align: center;
@@ -269,7 +269,7 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-5px) scale(1.05);
+            /* transform: translateY(-5px) scale(1.05); */ /* Removed animation */
             box-shadow: 0 15px 40px rgba(123, 44, 191, 0.5);
         }
 
@@ -282,7 +282,7 @@
 
         .btn-outline:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
+            /* transform: translateY(-5px); */ /* Removed animation */
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
@@ -301,7 +301,7 @@
         .floating-icon {
             position: absolute;
             opacity: 0.3;
-            animation: float 15s infinite linear;
+            /* animation: float 15s infinite linear; */ /* Removed animation */
             filter: drop-shadow(0 0 10px rgba(123, 44, 191, 0.5));
         }
 
@@ -358,7 +358,7 @@
             -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 2.5rem;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); */ /* Removed transition */
             text-align: center;
             border: 1px solid var(--glass-border);
             position: relative;
@@ -375,17 +375,17 @@
             height: 200%;
             background: radial-gradient(circle, rgba(123, 44, 191, 0.1) 0%, transparent 70%);
             z-index: -1;
-            transition: all 0.5s ease;
+            /* transition: all 0.5s ease; */ /* Removed transition */
         }
 
         .feature-card:hover {
-            transform: translateY(-15px);
+            /* transform: translateY(-15px); */ /* Removed animation */
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
             border-color: rgba(123, 44, 191, 0.5);
         }
 
         .feature-card:hover::before {
-            transform: rotate(180deg);
+            /* transform: rotate(180deg); */ /* Removed animation */
         }
 
         .feature-icon {
@@ -400,11 +400,11 @@
             color: white;
             font-size: 2.5rem;
             box-shadow: 0 10px 30px rgba(123, 44, 191, 0.4);
-            transition: all 0.5s ease;
+            /* transition: all 0.5s ease; */ /* Removed transition */
         }
 
         .feature-card:hover .feature-icon {
-            transform: rotateY(180deg) scale(1.1);
+            /* transform: rotateY(180deg) scale(1.1); */ /* Removed animation */
             box-shadow: 0 15px 40px rgba(123, 44, 191, 0.6);
         }
 
@@ -489,23 +489,6 @@
         tr:hover {
             background: rgba(123, 44, 191, 0.1);
         }
-.mobile-dropdown .btn-login,
-.mobile-dropdown .btn-register {
-    color: #000;          /* text color */
-    background: #fff;     /* button background */
-    border: 1px solid #333;
-    padding: 6px 12px;
-    border-radius: 4px;
-    text-align: center;
-    margin: 5px 0;
-    text-decoration: none;
-    display: block;
-}
-
-.mobile-dropdown .btn-login:hover,
-.mobile-dropdown .btn-register:hover {
-    background: #f0f0f0;
-}
 
         .coin {
             display: flex;
@@ -631,7 +614,7 @@
                 rgba(255, 255, 255, 0.05),
                 transparent
             );
-            animation: shimmer 2s infinite;
+            /* animation: shimmer 2s infinite; */ /* Removed animation */
         }
 
         /* CTA Section - Glowing Gradient */
@@ -651,7 +634,7 @@
             height: 200%;
             background: radial-gradient(circle, rgba(123, 44, 191, 0.2) 0%, transparent 70%);
             z-index: -1;
-            animation: rotate 30s linear infinite;
+            /* animation: rotate 30s linear infinite; */ /* Removed animation */
         }
 
         .cta-content {
@@ -695,7 +678,7 @@
             border: none;
             box-shadow: 0 10px 30px rgba(123, 44, 191, 0.5),
                         0 0 0 3px rgba(123, 44, 191, 0.3);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); */ /* Removed transition */
             position: relative;
             overflow: hidden;
         }
@@ -714,11 +697,11 @@
                 transparent
             );
             transform: rotate(45deg);
-            animation: shine 3s infinite;
+            /* animation: shine 3s infinite; */ /* Removed animation */
         }
 
         .btn-cta:hover {
-            transform: translateY(-5px) scale(1.05);
+            /* transform: translateY(-5px) scale(1.05); */ /* Removed animation */
             box-shadow: 0 15px 40px rgba(123, 44, 191, 0.7),
                         0 0 0 5px rgba(123, 44, 191, 0.2);
         }
@@ -794,7 +777,7 @@
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: all 0.3s ease;
+            /* transition: all 0.3s ease; */ /* Removed transition */
             display: flex;
             align-items: center;
         }
@@ -803,7 +786,7 @@
             margin-right: 10px;
             color: var(--secondary);
             font-size: 0.8rem;
-            transition: all 0.3s ease;
+            /* transition: all 0.3s ease; */ /* Removed transition */
         }
 
         .footer-links a:hover {
@@ -813,51 +796,7 @@
 
         .footer-links a:hover i {
             color: var(--primary);
-            transform: scale(1.3);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: all 0.6s ease;
-        }
-
-        .social-links a:hover {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 10px 30px rgba(123, 44, 191, 0.5);
-        }
-
-        .social-links a:hover::before {
-            transform: translateX(100%);
+            /* transform: scale(1.3); */ /* Removed animation */
         }
 
         .footer-bottom {
@@ -868,97 +807,16 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes shine {
-            from {
-                left: -100%;
-                top: -100%;
-            }
-            to {
-                left: 100%;
-                top: 100%;
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        .animate {
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        .animate.fadeInLeft {
-            animation: fadeInLeft 1s ease;
-        }
-
-        .animate.fadeInRight {
-            animation: fadeInRight 1s ease;
-        }
-
+        /* Animations - removed all animation classes */
+        .animate,
+        .animate.fadeInLeft,
+        .animate.fadeInRight,
         .animate.fadeInUp {
-            animation: fadeInUp 1s ease;
+            opacity: 1 !important;
+            animation: none !important;
         }
 
-        /* Responsive Styles */
+        /* Responsive Styles ... (unchanged) */
         @media (max-width: 1200px) {
             .hero h1 {
                 font-size: 3.8rem;
@@ -1065,33 +923,80 @@
                 font-size: 2rem;
             }
         }
-        /* Hide mobile dropdown by default */
-.mobile-dropdown {
+        /* Mobile Menu Styles */
+.mobile-menu {
     display: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    /* transition: all 0.3s ease; */ /* Removed transition */
+}
+
+.mobile-menu:hover {
+    color: var(--secondary);
+}
+
+/* Mobile Dropdown */
+.mobile-dropdown {
+    display: none; /* Remove !important */
     flex-direction: column;
-    background: #fff;
+    background: #18182f;
     position: absolute;
     right: 10px;
     top: 60px;
-    border: 1px solid #ccc;
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 20px 20px 10px 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    z-index: 2000;
+    min-width: 210px;
+    animation: dropdownFade 0.25s ease;
+}
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+.mobile-dropdown .btn {
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: left;
+}
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.mobile-nav-links li {
+    margin-bottom: 1rem;
+}
+.mobile-nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
     border-radius: 6px;
-    padding: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
-
-/* Show desktop buttons only on desktop */
-.desktop-only {
-    display: flex;
+.mobile-nav-links a:hover {
+    background: #23234a;
+    color: #00b4d8;
 }
-
-/* Mobile responsive */
 @media (max-width: 768px) {
-    .desktop-only {
-        display: none;
-    }
     .mobile-menu {
+        display: block;
         position: relative;
-        cursor: pointer;
+        z-index: 2100;
+    }
+    .nav-links,
+    .auth-buttons.desktop-only {
+        display: none !important;
+    }
+}
+@media (min-width: 769px) {
+    .mobile-menu,
+    .mobile-dropdown {
+        display: none !important;
     }
 }
     </style>
@@ -1117,10 +1022,20 @@
             <!-- Mobile menu -->
             <div class="mobile-menu">
                 <i class="fas fa-bars"></i>
-                <div class="mobile-dropdown">
-                    <a href="/user/login" class="btn btn-login">Login</a>
-                    <a href="/user/register" class="btn btn-register">Register</a>
-                </div>
+            </div>
+            <div class="mobile-dropdown">
+                <a href="/user/login" class="btn btn-login">Login</a>
+                <a href="/user/register" class="btn btn-register">Register</a>
+                <ul class="mobile-nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#market">Market</a></li>
+                    <li><a href="#charts">Charts</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="fees.html">Fees</a></li>
+                    <li><a href="legal.html">Legal</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </nav>
     </div>
@@ -1139,7 +1054,7 @@
                 </div>
             </div>
             <div class="hero-image animate fadeInRight">
-                <img src="https://images.unsplash.com/photo-1612832021459-fc8d7c1c9e87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2232&q=80" alt="Crypto Staking Dashboard">
+                <img src="https://haratrading.com/trading.jpg" alt="Crypto Staking Dashboard">
             </div>
         </div>
     </div>
@@ -1228,8 +1143,8 @@
                                 <span class="coin-symbol">BTC</span>
                             </div>
                         </td>
-                        <td>$42,876.12</td>
-                        <td class="price-up">+2.34%</td>
+                        <td class="market-price market-price-btc">$42,876.12</td>
+                        <td class="price-up market-change-btc">+2.34%</td>
                         <td>$820.4B</td>
                         <td>$24.3B</td>
                     </tr>
@@ -1241,8 +1156,8 @@
                                 <span class="coin-symbol">ETH</span>
                             </div>
                         </td>
-                        <td>$2,345.67</td>
-                        <td class="price-up">+1.56%</td>
+                        <td class="market-price market-price-eth">$2,345.67</td>
+                        <td class="price-up market-change-eth">+1.56%</td>
                         <td>$280.1B</td>
                         <td>$12.7B</td>
                     </tr>
@@ -1254,8 +1169,8 @@
                                 <span class="coin-symbol">ADA</span>
                             </div>
                         </td>
-                        <td>$0.4567</td>
-                        <td class="price-down">-0.78%</td>
+                        <td class="market-price market-price-ada">$0.4567</td>
+                        <td class="price-down market-change-ada">-0.78%</td>
                         <td>$15.9B</td>
                         <td>$1.2B</td>
                     </tr>
@@ -1267,8 +1182,8 @@
                                 <span class="coin-symbol">SOL</span>
                             </div>
                         </td>
-                        <td>$98.76</td>
-                        <td class="price-up">+5.23%</td>
+                        <td class="market-price market-price-sol">$98.76</td>
+                        <td class="price-up market-change-sol">+5.23%</td>
                         <td>$41.2B</td>
                         <td>$3.4B</td>
                     </tr>
@@ -1280,8 +1195,8 @@
                                 <span class="coin-symbol">XRP</span>
                             </div>
                         </td>
-                        <td>$0.5678</td>
-                        <td class="price-down">-1.12%</td>
+                        <td class="market-price market-price-xrp">$0.5678</td>
+                        <td class="price-down market-change-xrp">-1.12%</td>
                         <td>$28.7B</td>
                         <td>$2.1B</td>
                     </tr>
@@ -1385,292 +1300,335 @@
 
     <!-- Footer -->
     <footer id="about">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="footer-logo">
-                        <i class="fas fa-chart-line"></i>
-                        HaraTrading
-                    </div>
-                    <p class="footer-about">The most advanced cryptocurrency trading platform with institutional-grade tools for professional traders and investors worldwide.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-medium"></i></a>
-                    </div>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <i class="fas fa-chart-line"></i>
+                    HaraTrading
                 </div>
-                <div class="footer-column">
-                    <h3>Products</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Exchange</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Pro Trading</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Margin Trading</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Futures</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> API</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Trading Guides</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Status</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Fees</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Legal</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
+                <p class="footer-about">The most advanced cryptocurrency trading platform with institutional-grade tools for professional traders and investors worldwide.</p>
+                <!-- Only Telegram icon here -->
+                <div class="footer-social" style="margin-top:1.5rem;">
+                    <a href="https://t.me/yourtelegram" target="_blank" style="color:#00b4d8; font-size:2rem;">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2016 HaraTrading. All rights reserved. | Cryptocurrency trading involves risk.</p>
+            <div class="footer-column">
+                <h3>Products</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-popup-link" data-popup="exchange"><i class="fas fa-chevron-right"></i> Exchange</a></li>
+                    <li><a href="#" class="footer-popup-link" data-popup="pro-trading"><i class="fas fa-chevron-right"></i> Pro Trading</a></li>
+                    <li><a href="#" class="footer-popup-link" data-popup="margin-trading"><i class="fas fa-chevron-right"></i> Margin Trading</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-popup-link" data-popup="help-center"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                    <li><a href="#" class="footer-popup-link" data-popup="trading-guides"><i class="fas fa-chevron-right"></i> Trading Guides</a></li>
+                    <li><a href="#" class="footer-popup-link" data-popup="market-analysis"><i class="fas fa-chevron-right"></i> Market Analysis</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="careers.html"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="fees.html"><i class="fas fa-chevron-right"></i> Fees</a></li>
+                    <li><a href="legal.html"><i class="fas fa-chevron-right"></i> Legal</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2020 HaraTrading. All rights reserved. | Cryptocurrency trading involves risk.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Modal for footer links -->
+<div id="footer-modal" style="display:none; position:fixed; z-index:3000; left:0; top:0; width:100vw; height:100vh; background:rgba(13,13,26,0.85); align-items:center; justify-content:center;">
+    <div id="footer-modal-content" style="background:#18182f; color:#fff; border-radius:18px; max-width:95vw; width:400px; padding:2.5rem 2rem; box-shadow:0 8px 32px rgba(0,0,0,0.4); position:relative;">
+        <button id="footer-modal-close" style="position:absolute; top:18px; right:18px; background:none; border:none; color:#00b4d8; font-size:1.5rem; cursor:pointer;"><i class="fas fa-times"></i></button>
+        <div id="footer-modal-body"></div>
+    </div>
+</div>
 
     <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <script>
-        // Initialize particles.js
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": ["#7b2cbf", "#00b4d8", "#ff9e00"]
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": false,
-                            "speed": 40,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
+document.addEventListener('DOMContentLoaded', function() {
+    // Particles.js
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": ["#7b2cbf", "#00b4d8", "#ff9e00"]
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#7b2cbf",
+                "opacity": 0.2,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": "none",
+                "random": true,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": true,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "grab"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 140,
                     "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#7b2cbf",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
+                        "opacity": 0.5
                     }
                 },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 0.5
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 200,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
                 },
-                "retina_detect": true
-            });
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
 
-            // Animation on scroll
-            const animateElements = document.querySelectorAll('.animate');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                    }
+    // Animation on scroll
+    const animateElements = document.querySelectorAll('.animate');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+            }
+        });
+    }, { threshold: 0.1 });
+    animateElements.forEach(element => observer.observe(element));
+
+    // Mobile menu toggle
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    const authButtons = document.querySelector('.auth-buttons');
+    const mobileDropdown = document.querySelector('.mobile-dropdown');
+
+    mobileMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (mobileDropdown.style.display === 'flex') {
+            mobileDropdown.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        } else {
+            mobileDropdown.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (mobileDropdown && mobileDropdown.style.display === 'flex') {
+            if (!mobileDropdown.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileDropdown.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+    });
+
+    // Optional: Close dropdown on link click
+    document.querySelectorAll('.mobile-dropdown a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileDropdown.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
                 });
-            }, {
-                threshold: 0.1
-            });
-
-            animateElements.forEach(element => {
-                observer.observe(element);
-            });
-
-            // Mobile menu toggle
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
-            const authButtons = document.querySelector('.auth-buttons');
-            
-            mobileMenu.addEventListener('click', function() {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-                authButtons.style.display = authButtons.style.display === 'flex' ? 'none' : 'flex';
-                
-                if (navLinks.style.display === 'flex') {
-                    document.body.style.overflow = 'hidden';
-                } else {
+                // Close mobile menu if open
+                if (navLinks && navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                    if (authButtons) authButtons.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }
-            });
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu if open
-                        if (navLinks.style.display === 'flex') {
-                            navLinks.style.display = 'none';
-                            authButtons.style.display = 'none';
-                            document.body.style.overflow = 'auto';
-                        }
-                    }
-                });
-            });
-
-            // Real-time price animation
-            function updatePrices() {
-                const priceElements = document.querySelectorAll('.price-up, .price-down');
-                const coins = [
-                    { symbol: 'BTC', price: 42876.12, volatility: 500 },
-                    { symbol: 'ETH', price: 2345.67, volatility: 50 },
-                    { symbol: 'ADA', price: 0.4567, volatility: 0.02 },
-                    { symbol: 'SOL', price: 98.76, volatility: 2 },
-                    { symbol: 'XRP', price: 0.5678, volatility: 0.01 }
-                ];
-                
-                priceElements.forEach(element => {
-                    const row = element.closest('tr');
-                    if (!row) return;
-                    
-                    const coinSymbol = row.querySelector('.coin-symbol').textContent;
-                    const coinData = coins.find(c => c.symbol === coinSymbol);
-                    if (!coinData) return;
-                    
-                    // Simulate price movement
-                    const change = (Math.random() * 2 - 1) * coinData.volatility;
-                    const newPrice = coinData.price + change;
-                    const percentChange = (change / coinData.price * 100).toFixed(2);
-                    
-                    // Update price
-                    row.querySelector('td:nth-child(2)').textContent = `$${newPrice.toFixed(2)}`;
-                    
-                    // Update change
-                    if (percentChange >= 0) {
-                        element.className = 'price-up';
-                        element.innerHTML = `+${Math.abs(percentChange)}%`;
-                    } else {
-                        element.className = 'price-down';
-                        element.innerHTML = `-${Math.abs(percentChange)}%`;
-                    }
-                    
-                    // Update chart prices if this is the BTC or ETH row
-                    if (coinSymbol === 'BTC') {
-                        document.querySelector('.chart-card:nth-child(1) .chart-price').textContent = 
-                            `$${newPrice.toFixed(2)} (${percentChange >= 0 ? '+' : ''}${percentChange}%)`;
-                        document.querySelector('.chart-card:nth-child(1) .chart-price').className = 
-                            `chart-price ${percentChange >= 0 ? 'price-up' : 'price-down'}`;
-                    } else if (coinSymbol === 'ETH') {
-                        document.querySelector('.chart-card:nth-child(2) .chart-price').textContent = 
-                            `$${newPrice.toFixed(2)} (${percentChange >= 0 ? '+' : ''}${percentChange}%)`;
-                        document.querySelector('.chart-card:nth-child(2) .chart-price').className = 
-                            `chart-price ${percentChange >= 0 ? 'price-up' : 'price-down'}`;
-                    }
-                });
             }
-
-            // Update prices every 3 seconds
-            setInterval(updatePrices, 3000);
-            
-            // Initial price update
-            updatePrices();
         });
-        const mobileMenu = document.querySelector('.mobile-menu i');
-const dropdown = document.querySelector('.mobile-dropdown');
+    });
 
-mobileMenu.addEventListener('click', () => {
-    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    // Real-time price animation
+    async function updatePrices() {
+        const coins = [
+            { id: 'bitcoin', symbol: 'btc' },
+            { id: 'ethereum', symbol: 'eth' },
+            { id: 'cardano', symbol: 'ada' },
+            { id: 'solana', symbol: 'sol' },
+            { id: 'ripple', symbol: 'xrp' }
+        ];
+        const ids = coins.map(c => c.id).join(',');
+        try {
+            const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`);
+            const data = await res.json();
+            coins.forEach(coin => {
+                const price = data[coin.id]?.usd;
+                const change = data[coin.id]?.usd_24h_change;
+                const priceCell = document.querySelector(`.market-price-${coin.symbol.toLowerCase()}`);
+                const changeCell = document.querySelector(`.market-change-${coin.symbol.toLowerCase()}`);
+                if (priceCell && price !== undefined) priceCell.textContent = `$${price.toFixed(4)}`;
+                if (changeCell && change !== undefined) {
+                    if (change >= 0) {
+                        changeCell.className = `price-up market-change-${coin.symbol.toLowerCase()}`;
+                        changeCell.textContent = `+${change.toFixed(2)}%`;
+                    } else {
+                        changeCell.className = `price-down market-change-${coin.symbol.toLowerCase()}`;
+                        changeCell.textContent = `${change.toFixed(2)}%`;
+                    }
+                }
+            });
+        } catch (error) {
+            console.error('Error fetching price data:', error);
+        }
+    }
+    updatePrices();
+    setInterval(updatePrices, 30000);
+
+    // Modal for footer links
+    const popupContent = {
+        "exchange": `
+            <h2 style="color:#7b2cbf;">Exchange</h2>
+            <p>Trade hundreds of cryptocurrencies instantly with HaraTrading's secure and intuitive exchange. Enjoy deep liquidity, fast order execution, and competitive fees. Swap, buy, or sell your favorite coins with ease.</p>
+        `,
+        "pro-trading": `
+            <h2 style="color:#7b2cbf;">Pro Trading</h2>
+            <p>Unlock advanced trading tools including real-time charts, technical indicators, and customizable layouts. Designed for professional traders, our Pro Trading platform offers lightning-fast performance and institutional-grade analytics.</p>
+        `,
+        "margin-trading": `
+            <h2 style="color:#7b2cbf;">Margin Trading</h2>
+            <p>Amplify your trading potential with up to 10x leverage. HaraTrading's margin trading platform provides risk management tools, cross and isolated margin options, and robust security for leveraged positions.</p>
+        `,
+        "help-center": `
+            <h2 style="color:#7b2cbf;">Help Center</h2>
+            <p>Find answers to common questions, platform guides, and troubleshooting tips. Our Help Center is available 24/7 to support your trading journey on HaraTrading.</p>
+        `,
+        "trading-guides": `
+            <h2 style="color:#7b2cbf;">Trading Guides</h2>
+            <p>Boost your trading skills with our comprehensive guides. Learn about technical analysis, risk management, crypto fundamentals, and more—whether you're a beginner or a pro.</p>
+        `,
+        "market-analysis": `
+            <h2 style="color:#7b2cbf;">Market Analysis</h2>
+            <p>Stay ahead of the market with expert insights, daily reports, and in-depth analysis of major cryptocurrencies. Make informed decisions with HaraTrading's research and analytics.</p>
+        `
+        // Add more popups as needed
+    };
+
+    const modal = document.getElementById('footer-modal');
+    const modalBody = document.getElementById('footer-modal-body');
+    const modalClose = document.getElementById('footer-modal-close');
+
+    document.querySelectorAll('.footer-popup-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const key = this.getAttribute('data-popup');
+            if (popupContent[key]) {
+                modalBody.innerHTML = popupContent[key];
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    modalClose.addEventListener('click', function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
 });
-    </script>
+</script>
 </body>
 </html>
