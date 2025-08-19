@@ -1,4 +1,4 @@
-<ul class="sidebar-menu-list space-y-2">
+{{-- <ul class="sidebar-menu-list space-y-2">
     <li class="mb-4">
         <a href="{{ route('trade') }}" class="w-full flex items-center justify-center py-3 px-4 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-medium shadow-md hover:shadow-lg transition-all hover:from-indigo-700 hover:to-blue-600">
             New Challenge
@@ -92,4 +92,4 @@
             <span class="text font-medium">@lang('Log Out')</span>
         </a>
     </li>
-</ul>
+</ul> --}}

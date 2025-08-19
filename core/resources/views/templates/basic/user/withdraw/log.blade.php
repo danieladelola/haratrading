@@ -1,46 +1,42 @@
 <style>
-/* General Reset */
 body {
-  background-color: #ffffff; /* White background */
-  color: #000000; /* Default black text */
+  background-color: #000 !important;
+  color: #fff !important;
   font-family: Arial, sans-serif;
 }
 
-/* Table Container */
 .table-container {
   width: 100%;
   overflow-x: auto;
   margin: 20px auto;
   padding: 0 10px;
   box-sizing: border-box;
+  background: #000 !important;
 }
 
-/* Table Styling */
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff; /* White table background */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #000 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   border-radius: 8px;
 }
 
-/* Table Header */
 thead th {
-  background-color: #f0f0f0; /* Light gray header */
-  color: #000000; /* Black text */
+  background-color: #222 !important;
+  color: #fff !important;
   padding: 12px 15px;
   text-align: left;
   font-weight: bold;
 }
 
-/* Table Body */
 tbody td {
   padding: 12px 15px;
-  border-bottom: 1px solid #cccccc; /* Light border */
-  color: #000000; /* Black text */
+  border-bottom: 1px solid #222;
+  color: #fff !important;
 }
 
-/* Status Styling */
 .status {
   padding: 6px 12px;
   border-radius: 4px;
@@ -49,25 +45,24 @@ tbody td {
 }
 
 .status.completed {
-  background-color: #c8e6c9; /* Light green */
-  color: #000000;
+  background-color: #c8e6c9;
+  color: #000;
 }
 
 .status.pending {
-  background-color: #ffe0b2; /* Light orange */
-  color: #000000;
+  background-color: #ffe0b2;
+  color: #000;
 }
 
 .status.failed {
-  background-color: #ffcdd2; /* Light red */
-  color: #000000;
+  background-color: #ffcdd2;
+  color: #000;
 }
 
-/* Action Button */
 .action-btn {
   padding: 8px 12px;
-  background-color: #1976d2; /* Blue */
-  color: #ffffff;
+  background-color: #1976d2;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -75,50 +70,44 @@ tbody td {
 }
 
 .action-btn:hover {
-  background-color: #1565c0; /* Darker blue */
+  background-color: #1565c0;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
   table {
     display: block;
     width: 100%;
   }
-
   thead {
     display: none;
   }
-
   tbody tr {
     display: block;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #222;
     border-radius: 8px;
   }
-
   tbody td {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     text-align: right;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #222;
+    color: #fff !important;
   }
-
   tbody td::before {
     content: attr(data-label);
     font-weight: bold;
     margin-right: 10px;
     text-align: left;
-    color: #000000;
+    color: #fff !important;
   }
-
   tbody td:last-child {
     border-bottom: none;
   }
 }
 
-/* Pagination Styling */
 .pagination {
   margin-top: 20px;
   text-align: center;
@@ -128,34 +117,34 @@ tbody td {
   color: #1976d2;
   text-decoration: none;
   padding: 8px 16px;
-  border: 1px solid #cccccc;
+  border: 1px solid #222;
   border-radius: 4px;
   margin: 0 4px;
 }
 
 .pagination a:hover {
   background-color: #1976d2;
-  color: #ffffff;
+  color: #fff;
 }
 
 .pagination .active {
   background-color: #1976d2;
-  color: #ffffff;
+  color: #fff;
   border-color: #1976d2;
 }
 </style>
 
 
     <div class="table-container">
-        <table>
+        <table class="min-w-full bg-black text-white">
           <thead>
             <tr>
               <th>Gateway</th>
               <th>Transaction Initiated</th>
               <th>Amount</th>
-        
+
               <th>Status</th>
-              
+
             </tr>
           </thead>
           <tbody>
@@ -176,11 +165,11 @@ tbody td {
                 </td>
                 <td data-label="Amount">
                   <div class="text-right text-red-500 lg:text-center">
-                    {{ showAmount($withdraw->amount) }}  
-                    
+                    {{ showAmount($withdraw->amount) }}
+
                   </div>
                 </td>
-           
+
                 <td data-label="Status">
                   @php echo $withdraw->statusBadge @endphp
                 </td>
@@ -199,7 +188,7 @@ tbody td {
             @endforelse
           </tbody>
         </table>
-      </div> 
+      </div>
 
             {{-- <div class="modal fade custom-modal" id="withdrawModal" role="dialog" tabindex="-1">
                 <div class="modal-dialog" role="document">

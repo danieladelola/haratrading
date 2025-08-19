@@ -33,7 +33,11 @@
                                 <td class="px-4 py-3 text-white">{{ $deposit->reference }}</td>
                                 <td class="px-4 py-3 text-white">{{ $deposit->currency }}</td>
                                 <td class="px-4 py-3 text-white">{{ $deposit->network ?? 'N/A' }}</td>
-                                <td class="px-4 py-3 text-white">{{ number_format($deposit->amount, 8) }} {{ $deposit->currency }}</td>
+                                <td>
+                                    <span class="fw-bold">{{ $deposit->amount }} {{ $deposit->currency }}</span>
+                                    <br>
+                                    <span class="badge bg-info text-dark mt-1">≈ ${{ number_format($deposit->usd_equivalent, 2) }}</span>
+                                </td>
                                 <td class="px-4 py-3 text-white" id="usd-amount-{{ $deposit->id }}"></td>
                                 <td class="px-4 py-3 text-white">
                                     <span class="px-3 py-1 rounded-full text-xs font-medium
@@ -138,9 +142,19 @@
                     <!-- Amount -->
                     <div id="amountContainer" class="hidden">
                         <label class="block text-sm font-medium text-gray-300 mb-1">Amount:</label>
-                        <div class="flex items-center">
-                            <input type="number" name="amount" min="0.00000001" step="0.00000001" placeholder="0.00" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white">
-                            <span id="cryptoCurrencySymbol" class="bg-gray-700 border border-gray-600 rounded-r-lg px-4 py-2 text-white min-w-[70px] flex items-center justify-center ml-2"></span>
+                        <div class="flex items-center rounded-lg bg-gray-700 border border-gray-600 focus-within:ring-2 focus-within:ring-blue-500">
+                            <input
+                                type="number"
+                                name="amount"
+                                id="amount"
+                                min="0.00000001"
+                                step="0.00000001"
+                                placeholder="Enter amount"
+                                required
+                                class="flex-1 bg-transparent border-none px-4 py-2 text-white focus:outline-none"
+                                autocomplete="off"
+                            >
+                            <span id="cryptoCurrencySymbol" class="px-4 py-2 text-gray-300 font-semibold"></span>
                         </div>
                     </div>
 

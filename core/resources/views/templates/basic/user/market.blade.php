@@ -51,7 +51,7 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">24h Change</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Market Cap</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Volume (24h)</th>
-                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">Action</th>
+                            {{-- <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody id="assetsTableBody" class="bg-gray-900 divide-y divide-gray-800">
@@ -525,10 +525,7 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-white">
                         ${asset.volume ? formatLargeNumber(asset.volume) : 'N/A'}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{ route('trade.index') }}?asset=${asset.symbol}" class="text-blue-500 hover:text-blue-400 mr-4">Trade</a>
-                        <a href="#" class="text-green-500 hover:text-green-400">Deposit</a>
-                    </td>
+
                 `;
                 assetsTableBody.appendChild(row);
             });

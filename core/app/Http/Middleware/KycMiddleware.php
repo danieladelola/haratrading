@@ -27,7 +27,7 @@ class KycMiddleware
             ]);
         }
         if ($user->kv == Status::KYC_UNVERIFIED) {
-            $notify[] = ['error','You are not KYC verified. For being KYC verified, please provide these information'];
+            $notify[] = ['error','Verify Kyc to proceed'];
             return to_route('user.kyc.form')->withNotify($notify);
         }
         if ($user->kv == Status::KYC_PENDING) {

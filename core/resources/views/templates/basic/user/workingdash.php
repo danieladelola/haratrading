@@ -1072,12 +1072,7 @@
                     <div class="relative flex items-center bg-gray-50 rounded-lg border border-gray-300">
                         <img id="buy_cryptoIcon" src="" class="w-6 h-6 ml-3" alt="Crypto Icon">
                         <select id="buy_cryptoSelect" name="currency" class="w-full py-2 px-3 pl-12 bg-transparent text-gray-900 rounded-lg focus:ring-1 focus:ring-blue-500 focus:outline-none" required>
-                            <option value="">Select Cryptocurrency</option>
-                            @foreach($cryptos as $crypto)
-                                <option value="{{ $crypto->symbol }}" data-icon="{{ $crypto->icon_url ?? '' }}">
-                                    {{ $crypto->name }} ({{ $crypto->symbol }})
-                                </option>
-                            @endforeach
+                            <option value="">Loading...</option>
                         </select>
                     </div>
                 </div>
@@ -1126,12 +1121,7 @@
                     <div class="relative flex items-center bg-gray-50 rounded-lg border border-gray-300">
                         <img id="sell_cryptoIcon" src="" class="w-6 h-6 ml-3" alt="Crypto Icon">
                         <select id="sell_cryptoSelect" name="currency" class="w-full py-2 px-3 pl-12 bg-transparent text-gray-900 rounded-lg focus:ring-1 focus:ring-blue-500 focus:outline-none" required>
-                            <option value="">Select Cryptocurrency</option>
-                            @foreach($cryptos as $crypto)
-                                <option value="{{ $crypto->symbol }}" data-icon="{{ $crypto->icon_url ?? '' }}">
-                                    {{ $crypto->name }} ({{ $crypto->symbol }})
-                                </option>
-                            @endforeach
+                            <option value="">Loading...</option>
                         </select>
                     </div>
                 </div>
@@ -1180,12 +1170,7 @@
                     <div class="relative flex items-center bg-gray-50 rounded-lg border border-gray-300">
                         <img id="f2c_cryptoIcon" src="" class="w-6 h-6 ml-3" alt="Crypto Icon">
                         <select id="f2c_cryptoSelect" name="currency" class="w-full py-2 px-3 pl-12 bg-transparent text-gray-900 rounded-lg focus:ring-1 focus:ring-blue-500 focus:outline-none" required>
-                            <option value="">Select Cryptocurrency</option>
-                            @foreach($cryptos as $crypto)
-                                <option value="{{ $crypto->symbol }}" data-icon="{{ $crypto->icon_url ?? '' }}">
-                                    {{ $crypto->name }} ({{ $crypto->symbol }})
-                                </option>
-                            @endforeach
+                            <option value="">Loading...</option>
                         </select>
                     </div>
                 </div>
@@ -1218,12 +1203,7 @@
                     <div class="relative flex items-center bg-gray-50 rounded-lg border border-gray-300">
                         <img id="c2f_cryptoIcon" src="" class="w-6 h-6 ml-3" alt="Crypto Icon">
                         <select id="c2f_cryptoSelect" name="currency" class="w-full py-2 px-3 pl-12 bg-transparent text-gray-900 rounded-lg focus:ring-1 focus:ring-blue-500 focus:outline-none" required>
-                            <option value="">Select Cryptocurrency</option>
-                            @foreach($cryptos as $crypto)
-                                <option value="{{ $crypto->symbol }}" data-icon="{{ $crypto->icon_url ?? '' }}">
-                                    {{ $crypto->name }} ({{ $crypto->symbol }})
-                                </option>
-                            @endforeach
+                            <option value="">Loading...</option>
                         </select>
                     </div>
                 </div>
@@ -1479,13 +1459,42 @@ document.getElementById('closedTradesBtn').addEventListener('click', function() 
 // ================= Init on Page Load =================
 document.addEventListener('DOMContentLoaded', () => {
     initTradingView();
-    // REMOVE: populateCryptoSelects();
+    populateCryptoSelects();
     // keep your Fiat2Crypto, Crypto2Fiat, asset dropdown, signal strength, form validation init here
 });
 
-// REMOVE: populateCryptoSelects() and CoinGecko fetch logic
-// REMOVE: async function populateCryptoSelects() { ... }
-// REMOVE: document.addEventListener('DOMContentLoaded', populateCryptoSelects);
+// Populate cryptocurrency selects in modals
+async function populateCryptoSelects() {
+    const buySelect = document.getElementById('buy_cryptoSelect');
+    const sellSelect = document.getElementById('sell_cryptoSelect');
+
+    // Show loading
+    buySelect.innerHTML = '<option value="">Loading...</option>';
+    sellSelect.innerHTML = '<option value="">Loading...</option>';
+
+    // Fetch top 100 coins by market cap
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false');
+    const coins = await res.json();
+
+    buySelect.innerHTML = '';
+    sellSelect.innerHTML = '';
+
+    coins.forEach(coin => {
+        const option = document.createElement('option');
+        option.value = coin.symbol.toUpperCase();
+        option.textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
+        option.setAttribute('data-icon', coin.image);
+
+        buySelect.appendChild(option.cloneNode(true));
+        sellSelect.appendChild(option);
+    });
+
+    // Set initial icon and symbol
+    updateBuyCryptoFields();
+    updateSellCryptoFields();
+}
+
+document.addEventListener('DOMContentLoaded', populateCryptoSelects);
 
 // Helper to fetch price from CryptoCompare
 async function fetchCryptoPrice(symbol) {

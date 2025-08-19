@@ -15,7 +15,7 @@ class CryptoDeposit extends Model
         'reference',
         'type',
         'status',
-
+        'usd_equivalent',
     ];
 
     public function saveDeposit(array $data)
@@ -110,7 +110,11 @@ class CryptoDeposit extends Model
     }
 
 
-     
- 
+       protected $casts = [
+        'usd_equivalent' => 'decimal:8',
+    ];
+
+    // removed duplicate $fillable declaration
+
 
 }

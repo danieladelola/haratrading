@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Trade;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class TradeController extends Controller
@@ -38,7 +39,7 @@ class TradeController extends Controller
 
         return view('Template::trade.index', compact('pageTitle', 'pair', 'markets', 'coinWallet', 'marketCurrencyWallet'));
     }
-    
+
 
     public function history($symbol)
     {
@@ -151,5 +152,25 @@ class TradeController extends Controller
             'pairs'          => $pairs,
             'favoritePairId' => $favoritePairId,
         ]);
+    }
+
+    // Fetch top 100 coins from CoinGecko
+    public function fetchTopCoins()
+    {
+        $cgApiKey = 'CG-h8CmYn6uwtiUapYwZSVMSsJX';
+        $response = Http::withHeaders([
+            'x-cg-demo-api-key' => $cgApiKey
+        ])->get('https://api.coingecko.com/api/v3/coins/markets', [
+            'vs_currency' => 'usd',
+            'order' => 'market_cap_desc',
+            'per_page' => 100,
+            'page' => 1,
+            'sparkline' => false,
+        ]);
+        $assets = $response->json();
+
+        $userWallets = \App\Models\UserWallet::where('user_id', auth()->id())->get()->keyBy(fn($w) => strtolower($w->currency));
+
+        return view('templates.basic.user.trade', compact('assets', 'userWallets'));
     }
 }

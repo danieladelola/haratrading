@@ -96,9 +96,10 @@
                 <div>
                     <label class="block text-gray-500 mb-2">Duration:</label>
                     <select name="duration" id="durationSelect" class="w-full bg-gray-800 rounded px-3 py-2 text-white">
-                        @for ($i = 1; $i <= 30; $i++)
-                            <option value="{{ $i }}">{{ $i }} days</option>
-                        @endfor
+                        <option value="3">3 Months</option>
+                        <option value="6">6 Months</option>
+                        <option value="12">12 Months</option>
+                        <option value="18">18 Months</option>
                     </select>
                 </div>
 
@@ -149,11 +150,15 @@
 
     // Example ROI calculation based on duration (optional)
     document.getElementById('durationSelect').addEventListener('change', function() {
-        const days = parseInt(this.value);
-        // Simple ROI calculation example - adjust as needed
-        const roi = Math.min(5 + (days * 0.1), 10).toFixed(1);
-        document.getElementById('roi').value = roi;
-    });
+    const months = parseInt(this.value);
+    // Example ROI calculation: adjust as needed
+    let roi = 5;
+    if(months === 3) roi = 5;
+    else if(months === 6) roi = 7;
+    else if(months === 12) roi = 10;
+    else if(months === 18) roi = 15;
+    document.getElementById('roi').value = roi;
+});
 </script>
 
     <!-- Right Side Modal -->
@@ -196,7 +201,7 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-500">ROI</span>
-                            <span class="text-white">{{ $getUserStake->roi }}%</span>
+                            <span class="text-white">{{ $getUserStake->roi }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-500">Daily Profit</span>

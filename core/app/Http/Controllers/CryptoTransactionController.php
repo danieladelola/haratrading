@@ -22,39 +22,36 @@ class CryptoTransactionController extends Controller
         ]);
 
         $user = Auth::user();
-        $currency = Currency::where('symbol', $request->currency)->firstOrFail();
+        $symbol = strtoupper($request->currency);
 
-        // 1. Verify user has enough balance (example with USD balance)
-        $usdWallet = UserWallet::firstOrCreate(
-            ['user_id' => $user->id, 'currency' => 'USD'],
-            ['balance' => 0]
-        );
-
-        if ($usdWallet->balance < $request->fiat_amount) {
+        // 1. Verify user has enough balance (from main user balance)
+        if ($user->balance < $request->fiat_amount) {
             return back()->withErrors(['error' => 'Insufficient USD balance']);
         }
+
+        // Subtract USD from user main balance
+        $user->balance -= $request->fiat_amount;
+        $user->save();
+
+        // Credit crypto wallet
+        $cryptoWallet = UserWallet::firstOrCreate(
+            ['user_id' => $user->id, 'currency' => $symbol],
+            ['balance' => 0]
+        );
+        $cryptoWallet->increment('balance', $request->crypto_amount);
 
         // 2. Create transaction record
         $transaction = CryptoTransaction::create([
             'user_id' => $user->id,
             'type' => 'buy',
-            'currency' => $request->currency,
+            'currency' => $symbol,
             'amount' => $request->crypto_amount,
             'rate' => $request->fiat_amount / $request->crypto_amount,
             'total' => $request->fiat_amount,
             'status' => 'completed',
         ]);
 
-        // 3. Update wallets
-        $usdWallet->decrement('balance', $request->fiat_amount);
-
-        $cryptoWallet = UserWallet::firstOrCreate(
-            ['user_id' => $user->id, 'currency' => $request->currency],
-            ['balance' => 0]
-        );
-        $cryptoWallet->increment('balance', $request->crypto_amount);
-
-        return redirect()->back()->with('success', 'Successfully purchased '.$request->crypto_amount.' '.$request->currency);
+        return redirect()->back()->with('success', 'Successfully purchased '.$request->crypto_amount.' '.$symbol);
     }
 
     /**
@@ -141,52 +138,49 @@ class CryptoTransactionController extends Controller
 
         return $prices[$symbol] ?? 1;
     }
-}
 
+    /**
+     * Handle selling cryptocurrency
+     */
+    public function sell(Request $request)
+    {
+        $request->validate([
+            'currency' => 'required|string|max:10',
+            'crypto_amount' => 'required|numeric|min:0.00000001',
+            'fiat_amount' => 'required|numeric|min:0.01',
+        ]);
 
-/**
- * Handle selling cryptocurrency
- */
-public function sell(Request $request)
-{
-    $request->validate([
-        'currency' => 'required|string|max:10',
-        'crypto_amount' => 'required|numeric|min:0.00000001',
-        'fiat_amount' => 'required|numeric|min:0.01',
-    ]);
+        $user = Auth::user();
+        $symbol = strtoupper($request->currency);
 
-    $user = Auth::user();
-    $currency = Currency::where('symbol', $request->currency)->firstOrFail();
+        // 1. Verify user has enough crypto balance
+        $cryptoWallet = UserWallet::firstOrCreate(
+            ['user_id' => $user->id, 'currency' => $symbol],
+            ['balance' => 0]
+        );
 
-    // 1. Verify user has enough crypto balance
-    $cryptoWallet = UserWallet::firstOrCreate(
-        ['user_id' => $user->id, 'currency' => $request->currency],
-        ['balance' => 0]
-    );
+        if ($cryptoWallet->balance < $request->crypto_amount) {
+            return back()->withErrors(['error' => 'Insufficient '.$symbol.' balance']);
+        }
 
-    if ($cryptoWallet->balance < $request->crypto_amount) {
-        return back()->withErrors(['error' => 'Insufficient '.$request->currency.' balance']);
+        // 2. Create transaction record
+        $transaction = CryptoTransaction::create([
+            'user_id' => $user->id,
+            'type' => 'sell',
+            'currency' => $symbol,
+            'amount' => $request->crypto_amount,
+            'rate' => $request->fiat_amount / $request->crypto_amount,
+            'total' => $request->fiat_amount,
+            'status' => 'completed',
+        ]);
+
+        // 3. Update wallets
+        $cryptoWallet->decrement('balance', $request->crypto_amount);
+
+        // Credit USD to user main balance (not USD wallet)
+        $user->balance += $request->fiat_amount;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Successfully sold '.$request->crypto_amount.' '.$symbol);
     }
-
-    // 2. Create transaction record
-    $transaction = CryptoTransaction::create([
-        'user_id' => $user->id,
-        'type' => 'sell',
-        'currency' => $request->currency,
-        'amount' => $request->crypto_amount,
-        'rate' => $request->fiat_amount / $request->crypto_amount,
-        'total' => $request->fiat_amount,
-        'status' => 'completed',
-    ]);
-
-    // 3. Update wallets
-    $cryptoWallet->decrement('balance', $request->crypto_amount);
-
-    $usdWallet = UserWallet::firstOrCreate(
-        ['user_id' => $user->id, 'currency' => 'USD'],
-        ['balance' => 0]
-    );
-    $usdWallet->increment('balance', $request->fiat_amount);
-
-    return redirect()->back()->with('success', 'Successfully sold '.$request->crypto_amount.' '.$request->currency);
 }

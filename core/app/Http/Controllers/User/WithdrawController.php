@@ -163,4 +163,28 @@ class WithdrawController extends Controller
 
         return view('Template::user.withdraw.log', compact('pageTitle','withdraws', 'withdrawMethods'));
     }
+    public function money(Request $request)
+    {
+        $request->validate([
+            'crypto_currency' => 'required|string',
+            'network' => 'required|string',
+            'wallet_address' => 'required|string',
+            'amount' => 'required|numeric|min:10',
+            'method_code' => 'required|string',
+        ]);
+
+        $withdraw = new \App\Models\Withdrawal();
+        $withdraw->user_id = auth()->id();
+        $withdraw->method_code = $request->method_code;
+        $withdraw->currency = $request->crypto_currency;
+        $withdraw->network = $request->network;
+        $withdraw->wallet_address = $request->wallet_address;
+        $withdraw->amount = $request->amount;
+        $withdraw->status = \App\Constants\Status::PAYMENT_PENDING;
+        $withdraw->save();
+
+        // Optionally notify admin or user here
+
+        return back()->with('success', 'Withdrawal request submitted!');
+    }
 }

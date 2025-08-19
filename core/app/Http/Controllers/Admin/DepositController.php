@@ -121,25 +121,19 @@ class DepositController extends Controller
 
     public function approve($id)
     {
-        $deposit = CryptoDeposit::where('id', $id)->where('status', Status::PAYMENT_PENDING)->firstOrFail();
+        $deposit = CryptoDeposit::findOrFail($id);
 
-        $deposit->status = Status::PAYMENT_SUCCESS;
-        $deposit->save();
+        if ($deposit->status != Status::PAYMENT_SUCCESS) {
+            $deposit->status = Status::PAYMENT_SUCCESS;
+            $deposit->save();
 
-        // PaymentController::userDataUpdate($deposit, true);
+            // Update user balance
+            $user = $deposit->user;
+            $user->balance += $deposit->usd_equivalent; // or $deposit->amount if you want to credit crypto
+            $user->save();
+        }
 
-        notify($deposit->user, 'DEPOSIT_APPROVE', [
-            'method_name' => $deposit->methodName(),
-            'method_currency' => $deposit->method_currency,
-            'method_amount' => showAmount($deposit->final_amount, currencyFormat: false),
-            'amount' => showAmount($deposit->amount, currencyFormat: false),
-            'charge' => showAmount($deposit->charge, currencyFormat: false),
-            'rate' => showAmount($deposit->rate, currencyFormat: false),
-            'trx' => $deposit->trx,
-        ]);
-
-        $notify[] = ['success', 'Deposit request approved successfully'];
-
+        $notify[] = ['success', 'Deposit approved and user balance updated!'];
         return back()->withNotify($notify);
     }
 

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CryptoTransactionController;
+use App\Http\Controllers\User\WithdrawController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\UserAssetController;
 
 Route::get('/clear', function () {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
@@ -59,3 +62,10 @@ Route::controller('SiteController')->group(function () {
 
 Route::post('/crypto/buy', [CryptoTransactionController::class, 'buy'])->name('user.crypto.buy.store');
 Route::post('/crypto/sell', [CryptoTransactionController::class, 'sell'])->name('user.crypto.sell.store');
+
+
+Route::post('/user/crypto-deposit/update-usd-value', [CryptoDepositController::class, 'updateUsdValue'])
+    ->name('user.crypto.deposit.updateUsdValue');
+Route::post('/user/withdraw/money', [WithdrawController::class, 'money'])->name('user.withdraw.money');
+Route::post('/user/password/update', [UserAssetController::class, 'updatePassword'])->name('user.password.update');
+Route::post('/user/email/update', [UserAssetController::class, 'updateEmail'])->name('user.email.update');

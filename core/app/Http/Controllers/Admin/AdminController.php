@@ -320,4 +320,24 @@ class AdminController extends Controller
         return readfile($filePath);
     }
 
+    // In your admin controller that shows deposits
+public function cryptoDeposits()
+{
+    $deposits = CryptoDeposit::with('user')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    // Debug output - remove after testing
+    foreach ($deposits as $deposit) {
+        \Log::info('Admin Deposit Check', [
+            'id' => $deposit->id,
+            'amount' => $deposit->amount,
+            'currency' => $deposit->currency,
+            'usd_equivalent' => $deposit->usd_equivalent,
+            'raw_usd' => $deposit->getRawOriginal('usd_equivalent')
+        ]);
+    }
+
+    return view('admin.crypto_deposits', compact('deposits'));
+}
 }

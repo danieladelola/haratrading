@@ -50,16 +50,9 @@
                                         <small>{{ diffForHumans($deposit->created_at) }}</small>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="px-4 py-3 text-white">
                                     <div class="text-end text-lg-start fw-normal">
-                                        {{ showAmount($deposit->amount, currencyFormat: false) }} +
-                                        <span class="text--danger" title="@lang('charge')">{{ showAmount($deposit->charge, currencyFormat: false) }}
-                                        </span>
-                                        <br>
-                                        <span title="@lang('Amount with charge')">
-                                            {{ showAmount($deposit->amount + $deposit->charge, currencyFormat: false) }}
-                                            {{ $symbol }}
-                                        </span>
+                                        ${{ number_format($deposit->amount, 2) }}
                                     </div>
                                 </td>
                                 <td class="text-center">

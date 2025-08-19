@@ -1,5 +1,5 @@
 <?php
- 
+
 namespace App\Http\Controllers\User;
 
 use App\Constants\Status;
@@ -20,15 +20,17 @@ use App\Models\subscribers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
- 
 class UserAssetController extends Controller
 {
     public function index()
     {
         $pageTitle = 'User Assets';
         //$assets = UserAsset::where('user_id', auth()->id())->get();
-        $assets = CryptoDeposit::where('user_id', auth()->id())->get();
+        $assets = CryptoDeposit::where('user_id', auth()->id())
+            ->where('status', 1) // Only approved
+            ->get();
         $topAssets = CryptoDeposit::where('user_id', auth()->id())->take(4)->get();
         return view('Template::user.user_assets', compact('pageTitle' ,   'assets', 'topAssets'));
     }
@@ -38,7 +40,7 @@ class UserAssetController extends Controller
         // Implement your logic to calculate signal strength here
         return rand(1, 100); // Example: return a random strength value
     }
- 
+
 
     public function Market()
     {
@@ -46,7 +48,7 @@ class UserAssetController extends Controller
         //$assets = UserAsset::where('user_id', auth()->id())->get();
         $assets = CryptoDeposit::where('user_id', auth()->id())->get();
         return view('Template::user.market', compact('pageTitle' ,   'assets'));
-        
+
 
 
     }
@@ -75,9 +77,9 @@ class UserAssetController extends Controller
         $deposit->reference = $gen_reference;
         $deposit->type = 'crypto';
         $deposit->status = 'pending';
-        
- 
-         
+
+
+
         $deposit->save();
 
         //return redirect()->back()->with('success', 'Deposit successful!');
@@ -88,7 +90,7 @@ class UserAssetController extends Controller
     public function trade()
     {
         $pageTitle = 'Trade';
-        
+
         $currencies = Currency::rankOrdering()->select('name', 'id', 'symbol')->active()->get();
         $Topcurrencies =  Currency::rankOrdering()->select('name', 'id', 'symbol' , 'rate')->active()-> take(5)->get();  // Top 5 Currencies
         $assets = Currency::rankOrdering()->select('name', 'id', 'symbol')->active()->get();
@@ -97,7 +99,7 @@ class UserAssetController extends Controller
         $userAssets = AssetTrade::where('user_id', auth()->id())->get();
         $assets = CryptoDeposit::where('user_id', auth()->id())->get();
         return view ('Template::user.trade', compact('pageTitle', 'currencies', 'Topcurrencies', 'assets', 'userAssets'));
-    } 
+    }
 
 
     public function Signal()
@@ -130,7 +132,7 @@ class UserAssetController extends Controller
     $user->balance -= $signal->amount;
     $user->save();
     $notify[] = ['success', 'Signal purchased successfully'];
-    return back()->withNotify($notify);  
+    return back()->withNotify($notify);
 
 }
 
@@ -138,13 +140,13 @@ class UserAssetController extends Controller
 //Implement subscribers  function here
  public function subscribers()
     {
-      
+
         $pageTitle = 'Subscriptions';
         $subscriptions = DB::table('subscriptions')->get();
         $subscription_purchased = DB::table('user_subscriptions')->get();
         return view('Template::user.subscribers', compact('pageTitle', 'subscriptions', 'subscription_purchased'));
     }
-  
+
     public function buy(Request $request)
     {
         $request->validate([
@@ -185,4 +187,34 @@ class UserAssetController extends Controller
         return back()->withNotify($notify);
     }
 
-} 
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed|min:6',
+        ]);
+
+        $user = auth()->user();
+
+        if (!\Hash::check($request->current_password, $user->password)) {
+            return back()->with('error', 'Current password is incorrect.');
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return back()->with('success', 'Password changed successfully!');
+    }
+    public function updateEmail(Request $request)
+    {
+        $request->validate([
+            'new_email' => 'required|email|unique:users,email',
+        ]);
+
+        $user = auth()->user();
+        $user->email = $request->new_email;
+        $user->save();
+
+        return back()->with('success', 'Email address changed successfully!');
+    }
+}

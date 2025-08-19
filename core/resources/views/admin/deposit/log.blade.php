@@ -53,11 +53,10 @@
 </td>
 
                                         <td>
-                                            {{ showAmount($deposit->amount, currencyFormat:false) }} + <span class="text--danger" title="@lang('charge')">{{ showAmount($deposit->charge, currencyFormat:false) }} </span>
-                                            <br>
-                                            <strong title="@lang('Amount with charge')">
-                                                {{ showAmount($deposit->amount + $deposit->charge, currencyFormat:false) }} {{ __($deposit->method_currency) }}
-                                            </strong>
+                                            <div>
+                                                <span>Original: {{ $deposit->amount }} {{ $deposit->currency }}</span><br>
+                                                <span>USD: ${{ number_format($deposit->usd_equivalent, 2) }}</span>
+                                            </div>
                                         </td>
                                         <td>
                                             @php echo $deposit->statusBadge @endphp

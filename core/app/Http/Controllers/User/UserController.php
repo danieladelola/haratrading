@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,6 +34,9 @@ class UserController extends Controller
         $pageTitle = 'My Dashboard';
         $user      = auth()->user();
 
+        // Add this line to fetch active cryptos from your admin listing
+        $cryptos = Currency::where('status', 1)->get();
+
         $pairs = CoinPair::whereHas('marketData')
             ->select('id', 'market_id', 'coin_id')
             ->with('market:id,name,currency_id', 'coin:id,name,symbol', 'market.currency:id,name,symbol', 'marketData:id,pair_id,price,percent_change_1h,percent_change_24h,html_classes,market_cap')
@@ -40,7 +44,7 @@ class UserController extends Controller
 
         $currencies = Currency::rankOrdering()->select('name', 'id', 'symbol')->active()->get();
         $Topcurrencies = CryptoDeposit::where('user_id', $user->id)->orderBy('id', 'DESC')->take(5)->get();
-        
+
         // Top 5 Currencies
         $assets = Currency::rankOrdering()->select('name', 'id', 'symbol')->active()->get();
 
@@ -52,13 +56,16 @@ class UserController extends Controller
         $widget['completed_order'] = (clone $order)->completed()->count();
         $widget['canceled_order']  = (clone $order)->canceled()->count();
         $widget['total_trade']     = Trade::where('trader_id', $user->id)->count();
-        
+
         $recentOrders       = $order->with('pair.coin')->orderBy('id', 'DESC')->take(10)->get();
         $recentTransactions = Transaction::where('user_id', $user->id)->orderBy('id', 'DESC')->take(10)->get();
         $withdraws = Withdrawal::where('user_id', auth()->id())->where('status', '!=', Status::PAYMENT_INITIATE);
-        
+
         $totalWithdraw = $withdraws->sum('amount');
-        return view('Template::user.dashboard', compact('pageTitle', 'user', 'pairs', 'currencies', 'widget', 'recentOrders', 'recentTransactions' , 'Topcurrencies'  , 'assets', 'userAssets', 'totalWithdraw'));
+        return view('Template::user.dashboard', compact(
+            'pageTitle', 'user', 'pairs', 'currencies', 'widget', 'recentOrders', 'recentTransactions',
+            'Topcurrencies', 'assets', 'userAssets', 'totalWithdraw', 'cryptos' // <-- Add 'cryptos' here
+        ));
     }
 
     public function progress()
@@ -265,7 +272,7 @@ class UserController extends Controller
             'mobile'       => ['required', Rule::unique('users')->where('dial_code', $request->mobile_code)],
         ]);
 
-     
+
 
         $user->country_code = $request->country_code;
         $user->mobile       = $request->mobile;
@@ -338,17 +345,17 @@ class UserController extends Controller
             'profit' => 'nullable|numeric'
         ]);
     $user = auth()->user();
-    
+
     // Check if the user has enough balance for the trade in the user_wallets table
     $wallet = DB::table('user_wallets')
         ->where('user_id', $user->id)
         ->where('currency', $validated['assets'])
         ->first();
-    
+
     if (!$wallet || $wallet->balance < $validated['amount']) {
         return back()->withErrors(['amount' => 'Insufficient balance for this trade.']);
     }
-    
+
         // Create the trade
         AssetTrade::create([
             'user_id' => $user->id,
@@ -361,12 +368,29 @@ class UserController extends Controller
             'profit' => $validated['profit'],
             'status' => 'open' // Assuming the initial status is 'open'
         ]);
-    
+
         $notify[] = ['success', 'Trade created successfully.'];
         return back()->withNotify($notify);
     }
 
 
-    
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed|min:6',
+        ]);
+
+        $user = auth()->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->with('error', 'Current password is incorrect.');
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return back()->with('success', 'Password changed successfully!');
+    }
 
 }

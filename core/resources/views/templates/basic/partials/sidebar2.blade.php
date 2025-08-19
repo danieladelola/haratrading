@@ -12,47 +12,44 @@
         </a>
     </div>
     <nav class="space-y-2 flex-1">
-        <a href="{{ route('user.home') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md hover:shadow-lg transition-all">
+        <a href="{{ route('user.home') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('user.home') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-dashboard-line"></i> Dashboard
         </a>
-        <a href="{{ route('crypto.deposit.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        {{-- <a href="{{ route('trade.index') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('trade.index') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
+            <i class="ri-exchange-box-line"></i> Trade
+        </a> --}}
+        <a href="{{ route('crypto.deposit.index') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('crypto.deposit.index') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-arrow-right-circle-line"></i> Deposit
         </a>
-        <a href="{{ route('user.withdraw') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        <a href="{{ route('user.withdraw') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('user.withdraw') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-arrow-left-circle-line"></i> Withdraw
         </a>
-        <a href="{{ route('user.wallet.list') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        <a href="{{ route('user.wallet.list') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('user.wallet.list') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-wallet-3-line"></i> Wallet
         </a>
-        <a href="{{ route('user.assets.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        <a href="{{ route('user.assets.index') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('user.assets.index') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-coin-line"></i> Assets
         </a>
-        <a href="{{ route('market.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        <a href="{{ route('market.index') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('market.index') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-line-chart-line"></i> Markets
         </a>
-      
-        
-       
-        <a href="{{ route('staking.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        <a href="{{ route('staking.index') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('staking.index') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-money-dollar-circle-line"></i> Stake
         </a>
-        
-        <script>
-            function walletNotAvailable() {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Wallet Not Available',
-                    text: 'The wallet feature is currently not available. Please try again later.',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#9333ea'
-                });
-            }
-        </script>
-  
-        <a href="{{ route('user.profile.setting') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        <a href="{{ route('user.profile.setting') }}"
+           class="flex items-center gap-3 rounded-lg px-3 py-2 {{ request()->routeIs('user.profile.setting') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-settings-3-line"></i> Settings
         </a>
-        <a href="{{ route('user.logout') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+        <a href="{{ route('user.logout') }}"
+           class="flex flex-col items-center gap-1 rounded-lg p-3 {{ request()->routeIs('user.logout') ? 'bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md' : 'text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all' }}">
             <i class="ri-logout-circle-line text-2xl"></i> Logout
         </a>
     </nav>
@@ -75,6 +72,9 @@
                 <a href="{{ route('user.home') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 bg-gradient-to-r from-[#9333ea] to-[#2563eb] text-white shadow-md">
                     <i class="ri-dashboard-line text-2xl"></i> Home
                 </a>
+                {{-- <a href="{{ route('trade.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
+                    <i class="ri-exchange-box-line text-2xl"></i> Trade
+                </a> --}}
                 <a href="{{ route('crypto.deposit.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
                     <i class="ri-arrow-right-circle-line text-2xl"></i> Deposit
                 </a>
@@ -90,14 +90,9 @@
                 <a href="{{ route('market.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
                     <i class="ri-line-chart-line text-2xl"></i> Markets
                 </a>
-               
-              
-            
                 <a href="{{ route('staking.index') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
                     <i class="ri-money-dollar-circle-line text-2xl"></i> Stake
                 </a>
-             
-              
                 <a href="{{ route('user.profile.setting') }}" class="flex flex-col items-center gap-1 rounded-lg p-3 text-gray-300 hover:bg-gradient-to-r from-[#9333ea] to-[#2563eb] hover:text-white transition-all">
                     <i class="ri-settings-3-line text-2xl"></i> Settings
                 </a>
