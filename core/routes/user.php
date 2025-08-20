@@ -59,11 +59,11 @@ Route::middleware('auth')->name('user.')->group(function () {
         Route::namespace('User')->group(function () {
 
             Route::controller('UserController')->group(function(){
-                Route::get('dashboard', 'home')->name('home');  
-       
+                Route::get('dashboard', 'home')->name('home');
 
-                   
-            
+
+
+
 
                 Route::get('download-attachments/{file_hash}', 'downloadAttachment')->name('download.attachment');
 
@@ -171,4 +171,4 @@ Route::get('/subscribers', [UserAssetController::class, 'subscribers'])->name('s
 Route::post('/buy', [UserAssetController::class, 'buy'])->name('subscribers.buy');
 Route::get('/staking', [StakingController::class, 'index'])->name('staking.index');
 Route::post('/staking', [StakingController::class, 'store'])->name('user.staking.store');
- 
+

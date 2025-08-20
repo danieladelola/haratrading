@@ -1,103 +1,134 @@
 @extends($activeTemplate . 'layouts.master2')
 
 @section('content')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<main class="p-2 sm:px-2 flex-1 overflow-auto">
+<main class="p-4 sm:px-6 flex-1 overflow-auto">
 
-    <div class="p-1 space-y-4">
-        <div  >
-
+    <!-- Profile Section -->
     <div class="flex justify-center">
         <div class="w-full md:w-2/3 lg:w-1/2">
-            <div class="bg-gray-800 shadow-lg rounded-lg">
-                <div class="bg-gray-900 p-4 rounded-t-lg">
-                    <h5 class="text-white text-lg">@lang('Profile')</h5>
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl border border-gray-700">
+                <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 p-4 rounded-t-2xl">
+                    <h5 class="text-white text-lg font-bold">@lang('Profile')</h5>
                 </div>
                 <div class="p-6">
-                    <form   method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('First Name')</label>
-                                <input type="text" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="firstname" value="{{ $user->firstname }}" required>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('First Name')</label>
+                                <input type="text" name="firstname" value="{{ $user->firstname }}"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition duration-200"
+                                       required>
                             </div>
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('Last Name')</label>
-                                <input type="text" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="lastname" value="{{ $user->lastname }}" required>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('E-mail Address')</label>
-                                <input class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" value="{{ $user->email }}" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('Mobile Number')</label>
-                                <input class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" value="{{ $user->mobile }}" readonly>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Last Name')</label>
+                                <input type="text" name="lastname" value="{{ $user->lastname }}"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition duration-200"
+                                       required>
                             </div>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('Address')</label>
-                                <input type="text" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="address" value="{{ $user->address }}">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('E-mail Address')</label>
+                                <input value="{{ $user->email }}" readonly
+                                       class="bg-gray-700 text-gray-400 rounded-lg px-4 py-3 w-full border border-gray-600">
                             </div>
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('State')</label>
-                                <input type="text" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="state" value="{{ $user->state }}">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('Zip Code')</label>
-                                <input type="text" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="zip" value="{{ $user->zip }}">
-                            </div>
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('City')</label>
-                                <input type="text" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="city" value="{{ $user->city }}">
-                            </div>
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('Country')</label>
-                                <input class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" value="{{ $user->country_name }}" disabled>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Mobile Number')</label>
+                                <input value="{{ $user->mobile }}" readonly
+                                       class="bg-gray-700 text-gray-400 rounded-lg px-4 py-3 w-full border border-gray-600">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn bg-blue-600 text-black w-full py-2 rounded-lg">@lang('Submit')</button>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Address')</label>
+                                <input type="text" name="address" value="{{ $user->address }}"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('State')</label>
+                                <input type="text" name="state" value="{{ $user->state }}"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Zip Code')</label>
+                                <input type="text" name="zip" value="{{ $user->zip }}"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('City')</label>
+                                <input type="text" name="city" value="{{ $user->city }}"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Country')</label>
+                                <input value="{{ $user->country_name }}" disabled
+                                       class="bg-gray-700 text-gray-400 rounded-lg px-4 py-3 w-full border border-gray-600">
+                            </div>
+                        </div>
+
+                        <div class="pt-6">
+                            <button type="submit"
+                                    class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700
+                                           text-white font-medium py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                                @lang('Submit')
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    </div>
 
+    <!-- Change Password -->
     <div class="flex justify-center mt-8">
         <div class="w-full md:w-2/3 lg:w-1/2">
-            <div class="bg-gray-800 shadow-lg rounded-lg">
-                <div class="bg-gray-900 p-4 rounded-t-lg">
-                    <h5 class="text-white text-lg">@lang('Change Password')</h5>
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl border border-gray-700">
+                <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 p-4 rounded-t-2xl">
+                    <h5 class="text-white text-lg font-bold">@lang('Change Password')</h5>
                 </div>
                 <div class="p-6">
                     <form action="{{ route('user.password.update') }}" method="post">
                         @csrf
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('Current Password')</label>
-                                <input type="password" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="current_password" required>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Current Password')</label>
+                                <input type="password" name="current_password"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
                             </div>
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('New Password')</label>
-                                <input type="password" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="new_password" required>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                            <div class="form-group">
-                                <label class="block text-gray-400">@lang('Confirm New Password')</label>
-                                <input type="password" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="new_password_confirmation" required>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">@lang('New Password')</label>
+                                <input type="password" name="new_password"
+                                       class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                              focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
                             </div>
                         </div>
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn bg-blue-600 text-black w-full py-2 rounded-lg">@lang('Change Password')</button>
+
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Confirm New Password')</label>
+                            <input type="password" name="new_password_confirmation"
+                                   class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                          focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+
+                        <div class="pt-6">
+                            <button type="submit"
+                                    class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700
+                                           text-white font-medium py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                                @lang('Change Password')
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -105,26 +136,34 @@
         </div>
     </div>
 
-    <!-- Change Email Section -->
+    <!-- Change Email -->
     <div class="flex justify-center mt-8">
         <div class="w-full md:w-2/3 lg:w-1/2">
-            <div class="bg-gray-800 shadow-lg rounded-lg">
-                <div class="bg-gray-900 p-4 rounded-t-lg">
-                    <h5 class="text-white text-lg">@lang('Change Email Address')</h5>
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl border border-gray-700">
+                <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 p-4 rounded-t-2xl">
+                    <h5 class="text-white text-lg font-bold">@lang('Change Email Address')</h5>
                 </div>
                 <div class="p-6">
                     <form action="{{ route('user.email.update') }}" method="post">
                         @csrf
-                        <div class="form-group mb-4">
-                            <label class="block text-gray-400">@lang('Current Email')</label>
-                            <input type="email" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2 mb-2" value="{{ $user->email }}" readonly>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">@lang('Current Email')</label>
+                            <input type="email" value="{{ $user->email }}" readonly
+                                   class="bg-gray-700 text-gray-400 rounded-lg px-4 py-3 w-full border border-gray-600">
                         </div>
-                        <div class="form-group mb-4">
-                            <label class="block text-gray-400">@lang('New Email Address')</label>
-                            <input type="email" class="form-control bg-black text-black border border-gray-600 rounded-lg p-2" name="new_email" required>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">@lang('New Email Address')</label>
+                            <input type="email" name="new_email"
+                                   class="bg-gray-800 text-white rounded-lg px-4 py-3 w-full border border-gray-700
+                                          focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
                         </div>
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn bg-blue-600 text-black w-full py-2 rounded-lg">@lang('Change Email')</button>
+
+                        <div class="pt-6">
+                            <button type="submit"
+                                    class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700
+                                           text-white font-medium py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                                @lang('Change Email')
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -132,6 +171,7 @@
         </div>
     </div>
 </main>
+
 @if(session('success'))
     <script>
         Swal.fire({

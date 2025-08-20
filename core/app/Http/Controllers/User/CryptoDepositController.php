@@ -20,8 +20,7 @@ class CryptoDepositController extends Controller
         $pageTitle = 'Crypto Deposit';
         $user = auth()->user();
         $gateways = Gateway::where('status', Status::ENABLE)->get();
-        $cryptoDeposits = CryptoDeposit::where('user_id', $user->id)
-            ->where('status', 1) // Only approved
+        $cryptoDeposits = CryptoDeposit::where('user_id', auth()->id())
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -67,10 +66,10 @@ class CryptoDepositController extends Controller
 
             $notify[] = ['success', 'Successfully converted fiat to crypto!'];
             return back()->withNotify($notify);
-        }
-        elseif ($conversionType === 'crypto_to_fiat') {
-            $wallet = UserWallet::where('user_id', $user->id)
-                               ->where('currency', $request->currency)
+        } elseif ($conversionType === 'crypto_to_fiat') {
+            $currency = strtoupper($request->currency);
+            $wallet = UserWallet::where('user_id', auth()->id())
+                               ->where('currency', $currency)
                                ->first();
 
             if (!$wallet || $wallet->balance < $request->crypto_amount) {

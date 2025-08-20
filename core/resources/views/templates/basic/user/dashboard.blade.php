@@ -874,9 +874,9 @@
 
                         <!-- Coin to Fiat Button -->
                         <button type="button" onclick="openModal('cryptoToFiatModal')"
-                                class="btn btn-info w-full mt-2 flex items-center justify-center text-center">
-                            <i class="ri-exchange-line mr-1"></i> Convert Coin to Fiat
-                        </button>
+        class="btn btn-danger w-full mt-2 flex items-center justify-center text-center">
+    <i class="ri-exchange-line mr-1"></i> Convert Coin to Fiat
+</button>
                     </div>
                 @else
                     <div class="overflow-x-auto">
@@ -1563,13 +1563,65 @@ async function updateSellCryptoFields() {
     }
 }
 
-// Event listeners
-document.getElementById('buy_cryptoSelect').addEventListener('change', updateBuyCryptoFields);
-document.getElementById('buy_fiatAmount').addEventListener('input', updateBuyCryptoFields);
+// Fiat to Crypto Modal event listeners
+document.getElementById('f2c_cryptoSelect').addEventListener('change', updateF2CCryptoFields);
+document.getElementById('f2c_fiatAmount').addEventListener('input', updateF2CCryptoFields);
 
-// Event listeners for sell modal
-document.getElementById('sell_cryptoSelect').addEventListener('change', updateSellCryptoFields);
-document.getElementById('sell_cryptoAmount').addEventListener('input', updateSellCryptoFields);
+async function updateF2CCryptoFields() {
+    const select = document.getElementById('f2c_cryptoSelect');
+    const amountInput = document.getElementById('f2c_fiatAmount');
+    const receiveInput = document.getElementById('f2c_cryptoAmount');
+    const symbolSpan = document.getElementById('f2c_cryptoSymbol');
+    const icon = document.getElementById('f2c_cryptoIcon');
+
+    const selectedOption = select.options[select.selectedIndex];
+    const symbol = select.value;
+    const iconUrl = selectedOption.getAttribute('data-icon');
+    icon.src = iconUrl;
+    symbolSpan.textContent = symbol;
+
+    const usd = parseFloat(amountInput.value) || 0;
+    if (symbol && usd > 0) {
+        const price = await fetchCryptoPrice(symbol);
+        if (price > 0) {
+            receiveInput.value = (usd / price).toFixed(8);
+        } else {
+            receiveInput.value = '';
+        }
+    } else {
+        receiveInput.value = '';
+    }
+}
+
+// Crypto to Fiat Modal event listeners
+document.getElementById('c2f_cryptoSelect').addEventListener('change', updateC2FCryptoFields);
+document.getElementById('c2f_cryptoAmount').addEventListener('input', updateC2FCryptoFields);
+
+async function updateC2FCryptoFields() {
+    const select = document.getElementById('c2f_cryptoSelect');
+    const amountInput = document.getElementById('c2f_cryptoAmount');
+    const receiveInput = document.getElementById('c2f_fiatAmount');
+    const symbolSpan = document.getElementById('c2f_cryptoSymbol');
+    const icon = document.getElementById('c2f_cryptoIcon');
+
+    const selectedOption = select.options[select.selectedIndex];
+    const symbol = select.value;
+    const iconUrl = selectedOption.getAttribute('data-icon');
+    icon.src = iconUrl;
+    if (symbolSpan) symbolSpan.textContent = symbol;
+
+    const cryptoAmount = parseFloat(amountInput.value) || 0;
+    if (symbol && cryptoAmount > 0) {
+        const price = await fetchCryptoPrice(symbol);
+        if (price > 0) {
+            receiveInput.value = (cryptoAmount * price).toFixed(2);
+        } else {
+            receiveInput.value = '';
+        }
+    } else {
+        receiveInput.value = '';
+    }
+}
 
 // Set initial icon and symbol on modal open
 document.getElementById('buyCryptoModal').addEventListener('click', function() {
