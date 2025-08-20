@@ -1,27 +1,18 @@
 <?php
-
-namespace App\Http\Controllers\User;
-
-use App\Http\Controllers\Controller;
-use App\Models\Crypto;
-
-class DashboardController extends Controller
+public function index()
 {
-    public function index()
-    {
-        $user = auth()->user();
+    $user = auth()->user();
 
-        // Get all supported cryptos
-        $cryptos = Crypto::all();
+    // Get all supported cryptos
+    $cryptos = Crypto::all();
 
-        // Attach user balance to each crypto
-        foreach ($cryptos as $crypto) {
-        $balances = $user->wallets->pluck('balance', 'currency');
-where('currency', $crypto->symbol)->first();
-
-        }
-        // Pass to view
-        return view('templates.basic.user.dashboard', compact('cryptos', 'balances'));
+    // Attach user balance to each crypto
+    foreach ($cryptos as $crypto) {
+        $crypto->user_balance = $user->wallets()
+            ->where('currency', $crypto->symbol)
+            ->value('balance') ?? 0;
     }
+
+    // Pass to view
+    return view('templates.basic.user.dashboard', compact('cryptos', ...other variables));
 }
-?>
