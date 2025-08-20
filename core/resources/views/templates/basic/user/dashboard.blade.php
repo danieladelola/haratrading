@@ -874,9 +874,9 @@
 
                         <!-- Coin to Fiat Button -->
                         <button type="button" onclick="openModal('cryptoToFiatModal')"
-        class="btn btn-danger w-full mt-2 flex items-center justify-center text-center">
-    <i class="ri-exchange-line mr-1"></i> Convert Coin to Fiat
-</button>
+                                class="btn btn-info w-full mt-2 flex items-center justify-center text-center">
+                            <i class="ri-exchange-line mr-1"></i> Convert Coin to Fiat
+                        </button>
                     </div>
                 @else
                     <div class="overflow-x-auto">
